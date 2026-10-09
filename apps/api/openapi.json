@@ -1,0 +1,2138 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Concord Annotation API",
+    "description": "Collaborative annotation and quality control. Session-cookie authentication; mutations require Origin and X-CSRF-Token. See /api/v1/auth/session for the CSRF token.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/v1/health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "summary": "Health",
+        "operationId": "health_api_v1_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login",
+        "operationId": "login_api_v1_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/session": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Session Info",
+        "operationId": "session_info_api_v1_auth_session_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Logout",
+        "operationId": "logout_api_v1_auth_logout_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users": {
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "summary": "List Users",
+        "operationId": "list_users_api_v1_users_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/UserOut"
+                  },
+                  "type": "array",
+                  "title": "Response List Users Api V1 Users Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects": {
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "summary": "List Projects",
+        "operationId": "list_projects_api_v1_projects_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ProjectOut"
+                  },
+                  "type": "array",
+                  "title": "Response List Projects Api V1 Projects Get"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Projects"
+        ],
+        "summary": "Create Project",
+        "operationId": "create_project_api_v1_projects_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectConfig"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}": {
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "summary": "Get Project",
+        "operationId": "get_project_api_v1_projects__project_id__get",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Projects"
+        ],
+        "summary": "Configure Project",
+        "operationId": "configure_project_api_v1_projects__project_id__put",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/members": {
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "summary": "Get Members",
+        "operationId": "get_members_api_v1_projects__project_id__members_get",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserOut"
+                  },
+                  "title": "Response Get Members Api V1 Projects  Project Id  Members Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Projects"
+        ],
+        "summary": "Set Members",
+        "operationId": "set_members_api_v1_projects__project_id__members_put",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Members"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/state": {
+      "post": {
+        "tags": [
+          "Projects"
+        ],
+        "summary": "Change State",
+        "operationId": "change_state_api_v1_projects__project_id__state_post",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StateChange"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/imports": {
+      "post": {
+        "tags": [
+          "Projects"
+        ],
+        "summary": "Import Items",
+        "operationId": "import_items_api_v1_projects__project_id__imports_post",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_import_items_api_v1_projects__project_id__imports_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/assignments/current": {
+      "get": {
+        "tags": [
+          "Assignments"
+        ],
+        "summary": "Current Assignment",
+        "operationId": "current_assignment_api_v1_projects__project_id__assignments_current_get",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/AssignmentOut"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Response Current Assignment Api V1 Projects  Project Id  Assignments Current Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/assignments/next": {
+      "post": {
+        "tags": [
+          "Assignments"
+        ],
+        "summary": "Next Assignment",
+        "operationId": "next_assignment_api_v1_projects__project_id__assignments_next_post",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/AssignmentOut"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Response Next Assignment Api V1 Projects  Project Id  Assignments Next Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/assignments/{assignment_id}/draft": {
+      "put": {
+        "tags": [
+          "Assignments"
+        ],
+        "summary": "Save Draft",
+        "operationId": "save_draft_api_v1_assignments__assignment_id__draft_put",
+        "parameters": [
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Assignment Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/RatingWrite"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ABWrite"
+                  },
+                  {
+                    "$ref": "#/components/schemas/NERWrite"
+                  }
+                ],
+                "discriminator": {
+                  "propertyName": "mode",
+                  "mapping": {
+                    "rating": "#/components/schemas/RatingWrite",
+                    "ab": "#/components/schemas/ABWrite",
+                    "ner": "#/components/schemas/NERWrite"
+                  }
+                },
+                "title": "Body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SaveOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/assignments/{assignment_id}/submit": {
+      "post": {
+        "tags": [
+          "Assignments"
+        ],
+        "summary": "Submit",
+        "operationId": "submit_api_v1_assignments__assignment_id__submit_post",
+        "parameters": [
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Assignment Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/RatingWrite"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ABWrite"
+                  },
+                  {
+                    "$ref": "#/components/schemas/NERWrite"
+                  }
+                ],
+                "discriminator": {
+                  "propertyName": "mode",
+                  "mapping": {
+                    "rating": "#/components/schemas/RatingWrite",
+                    "ab": "#/components/schemas/ABWrite",
+                    "ner": "#/components/schemas/NERWrite"
+                  }
+                },
+                "title": "Body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SaveOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/assignments/{assignment_id}/skip": {
+      "post": {
+        "tags": [
+          "Assignments"
+        ],
+        "summary": "Skip",
+        "operationId": "skip_api_v1_assignments__assignment_id__skip_post",
+        "parameters": [
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Assignment Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/assignments/reset-skipped": {
+      "post": {
+        "tags": [
+          "Assignments"
+        ],
+        "summary": "Reset Skipped",
+        "operationId": "reset_skipped_api_v1_projects__project_id__assignments_reset_skipped_post",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/metrics": {
+      "get": {
+        "tags": [
+          "Quality"
+        ],
+        "summary": "Get Metrics",
+        "operationId": "get_metrics_api_v1_projects__project_id__metrics_get",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricsOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/review": {
+      "get": {
+        "tags": [
+          "Quality"
+        ],
+        "summary": "Review Queue",
+        "operationId": "review_queue_api_v1_projects__project_id__review_get",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          },
+          {
+            "name": "all_items",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "All Items"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReviewItem"
+                  },
+                  "title": "Response Review Queue Api V1 Projects  Project Id  Review Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/items/{item_id}/adjudication": {
+      "put": {
+        "tags": [
+          "Quality"
+        ],
+        "summary": "Adjudicate",
+        "operationId": "adjudicate_api_v1_projects__project_id__items__item_id__adjudication_put",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Item Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/RatingDecision"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ABDecision"
+                  },
+                  {
+                    "$ref": "#/components/schemas/NERDecision"
+                  }
+                ],
+                "discriminator": {
+                  "propertyName": "mode",
+                  "mapping": {
+                    "rating": "#/components/schemas/RatingDecision",
+                    "ab": "#/components/schemas/ABDecision",
+                    "ner": "#/components/schemas/NERDecision"
+                  }
+                },
+                "title": "Body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/events": {
+      "get": {
+        "tags": [
+          "Quality"
+        ],
+        "summary": "Events",
+        "operationId": "events_api_v1_projects__project_id__events_get",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              },
+              "text/event-stream": {}
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/exports": {
+      "get": {
+        "tags": [
+          "Exports"
+        ],
+        "summary": "Export",
+        "operationId": "export_api_v1_projects__project_id__exports_get",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Project Id"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "jsonl",
+                "parquet",
+                "huggingface"
+              ],
+              "type": "string",
+              "default": "jsonl",
+              "title": "Format"
+            }
+          },
+          {
+            "name": "selection",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "annotations",
+                "consensus",
+                "both"
+              ],
+              "type": "string",
+              "default": "both",
+              "title": "Selection"
+            }
+          },
+          {
+            "name": "include_unresolved",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Include Unresolved"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              },
+              "application/zip": {},
+              "application/x-ndjson": {},
+              "application/vnd.apache.parquet": {}
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ABDecision": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "const": "ab",
+            "title": "Mode"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/ABPayload"
+          },
+          "rationale": {
+            "type": "string",
+            "maxLength": 4000,
+            "minLength": 3,
+            "title": "Rationale"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "mode",
+          "payload",
+          "rationale"
+        ],
+        "title": "ABDecision"
+      },
+      "ABPayload": {
+        "properties": {
+          "choice": {
+            "type": "string",
+            "enum": [
+              "A",
+              "B",
+              "TIE"
+            ],
+            "title": "Choice"
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 2000,
+            "title": "Note",
+            "default": ""
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "choice"
+        ],
+        "title": "ABPayload"
+      },
+      "ABWrite": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "const": "ab",
+            "title": "Mode"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/ABPayload"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Version"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "mode",
+          "payload",
+          "version"
+        ],
+        "title": "ABWrite"
+      },
+      "AssignmentOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "project_id": {
+            "type": "string",
+            "title": "Project Id"
+          },
+          "version": {
+            "type": "integer",
+            "title": "Version"
+          },
+          "expires_at": {
+            "type": "number",
+            "title": "Expires At"
+          },
+          "item": {
+            "$ref": "#/components/schemas/ItemOut"
+          },
+          "draft": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RatingPayload"
+              },
+              {
+                "$ref": "#/components/schemas/ABPayload"
+              },
+              {
+                "$ref": "#/components/schemas/NERPayload"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Draft"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "project_id",
+          "version",
+          "expires_at",
+          "item",
+          "draft"
+        ],
+        "title": "AssignmentOut"
+      },
+      "Body_import_items_api_v1_projects__project_id__imports_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_import_items_api_v1_projects__project_id__imports_post"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ImportResult": {
+        "properties": {
+          "imported": {
+            "type": "integer",
+            "title": "Imported"
+          }
+        },
+        "type": "object",
+        "required": [
+          "imported"
+        ],
+        "title": "ImportResult"
+      },
+      "ItemMetric": {
+        "properties": {
+          "item_id": {
+            "type": "string",
+            "title": "Item Id"
+          },
+          "external_id": {
+            "type": "string",
+            "title": "External Id"
+          },
+          "submitted": {
+            "type": "integer",
+            "title": "Submitted"
+          },
+          "vote_share": {
+            "type": "number",
+            "title": "Vote Share"
+          },
+          "resolved": {
+            "type": "boolean",
+            "title": "Resolved"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "payload": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Payload"
+          },
+          "adjudicated": {
+            "type": "boolean",
+            "title": "Adjudicated"
+          }
+        },
+        "type": "object",
+        "required": [
+          "item_id",
+          "external_id",
+          "submitted",
+          "vote_share",
+          "resolved",
+          "reason",
+          "payload",
+          "adjudicated"
+        ],
+        "title": "ItemMetric"
+      },
+      "ItemOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "external_id": {
+            "type": "string",
+            "title": "External Id"
+          },
+          "content": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Content"
+          },
+          "tokens": {
+            "items": {
+              "$ref": "#/components/schemas/Token"
+            },
+            "type": "array",
+            "title": "Tokens"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "external_id",
+          "content",
+          "tokens"
+        ],
+        "title": "ItemOut"
+      },
+      "Kappa": {
+        "properties": {
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "n": {
+            "type": "integer",
+            "title": "N"
+          }
+        },
+        "type": "object",
+        "required": [
+          "value",
+          "n"
+        ],
+        "title": "Kappa"
+      },
+      "Login": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "maxLength": 254,
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 1024,
+            "minLength": 1,
+            "title": "Password"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "Login"
+      },
+      "Members": {
+        "properties": {
+          "user_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "User Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "user_ids"
+        ],
+        "title": "Members"
+      },
+      "Message": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "message"
+        ],
+        "title": "Message"
+      },
+      "MetricsOut": {
+        "properties": {
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "total_items": {
+            "type": "integer",
+            "title": "Total Items"
+          },
+          "submissions": {
+            "type": "integer",
+            "title": "Submissions"
+          },
+          "expected_submissions": {
+            "type": "integer",
+            "title": "Expected Submissions"
+          },
+          "fully_rated": {
+            "type": "integer",
+            "title": "Fully Rated"
+          },
+          "resolved": {
+            "type": "integer",
+            "title": "Resolved"
+          },
+          "unresolved": {
+            "type": "integer",
+            "title": "Unresolved"
+          },
+          "coverage": {
+            "type": "number",
+            "title": "Coverage"
+          },
+          "fleiss": {
+            "$ref": "#/components/schemas/Kappa"
+          },
+          "distribution": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Distribution"
+          },
+          "annotators": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Annotators"
+          },
+          "pairs": {
+            "items": {
+              "$ref": "#/components/schemas/PairMetric"
+            },
+            "type": "array",
+            "title": "Pairs"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ItemMetric"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "revision",
+          "total_items",
+          "submissions",
+          "expected_submissions",
+          "fully_rated",
+          "resolved",
+          "unresolved",
+          "coverage",
+          "fleiss",
+          "distribution",
+          "annotators",
+          "pairs",
+          "items"
+        ],
+        "title": "MetricsOut"
+      },
+      "NERDecision": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "const": "ner",
+            "title": "Mode"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/NERPayload"
+          },
+          "rationale": {
+            "type": "string",
+            "maxLength": 4000,
+            "minLength": 3,
+            "title": "Rationale"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "mode",
+          "payload",
+          "rationale"
+        ],
+        "title": "NERDecision"
+      },
+      "NERPayload": {
+        "properties": {
+          "spans": {
+            "items": {
+              "$ref": "#/components/schemas/Span"
+            },
+            "type": "array",
+            "maxItems": 500,
+            "title": "Spans"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "spans"
+        ],
+        "title": "NERPayload"
+      },
+      "NERWrite": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "const": "ner",
+            "title": "Mode"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/NERPayload"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Version"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "mode",
+          "payload",
+          "version"
+        ],
+        "title": "NERWrite"
+      },
+      "PairMetric": {
+        "properties": {
+          "left": {
+            "type": "string",
+            "title": "Left"
+          },
+          "right": {
+            "type": "string",
+            "title": "Right"
+          },
+          "shared_items": {
+            "type": "integer",
+            "title": "Shared Items"
+          },
+          "kappa": {
+            "$ref": "#/components/schemas/Kappa"
+          },
+          "span_f1": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Span F1"
+          }
+        },
+        "type": "object",
+        "required": [
+          "left",
+          "right",
+          "shared_items",
+          "kappa"
+        ],
+        "title": "PairMetric"
+      },
+      "ProjectConfig": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 2,
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 2000,
+            "title": "Description",
+            "default": ""
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "rating",
+              "ner",
+              "ab"
+            ],
+            "title": "Mode"
+          },
+          "labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 30,
+            "title": "Labels"
+          },
+          "ordered": {
+            "type": "boolean",
+            "title": "Ordered",
+            "default": false
+          },
+          "target_raters": {
+            "type": "integer",
+            "maximum": 20.0,
+            "minimum": 2.0,
+            "title": "Target Raters",
+            "default": 3
+          },
+          "review_threshold": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.5,
+            "title": "Review Threshold",
+            "default": 0.8
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name",
+          "mode"
+        ],
+        "title": "ProjectConfig"
+      },
+      "ProjectOut": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 2,
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "rating",
+              "ner",
+              "ab"
+            ],
+            "title": "Mode"
+          },
+          "labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Labels"
+          },
+          "ordered": {
+            "type": "boolean",
+            "title": "Ordered"
+          },
+          "target_raters": {
+            "type": "integer",
+            "title": "Target Raters"
+          },
+          "review_threshold": {
+            "type": "number",
+            "title": "Review Threshold"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "active",
+              "completed",
+              "archived"
+            ],
+            "title": "State"
+          },
+          "metric_revision": {
+            "type": "integer",
+            "title": "Metric Revision"
+          },
+          "item_count": {
+            "type": "integer",
+            "title": "Item Count"
+          },
+          "submission_count": {
+            "type": "integer",
+            "title": "Submission Count"
+          },
+          "my_submission_count": {
+            "type": "integer",
+            "title": "My Submission Count"
+          },
+          "member_count": {
+            "type": "integer",
+            "title": "Member Count"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name",
+          "description",
+          "mode",
+          "labels",
+          "ordered",
+          "target_raters",
+          "review_threshold",
+          "id",
+          "state",
+          "metric_revision",
+          "item_count",
+          "submission_count",
+          "my_submission_count",
+          "member_count"
+        ],
+        "title": "ProjectOut"
+      },
+      "RatingDecision": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "const": "rating",
+            "title": "Mode"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/RatingPayload"
+          },
+          "rationale": {
+            "type": "string",
+            "maxLength": 4000,
+            "minLength": 3,
+            "title": "Rationale"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "mode",
+          "payload",
+          "rationale"
+        ],
+        "title": "RatingDecision"
+      },
+      "RatingPayload": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 2000,
+            "title": "Note",
+            "default": ""
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "label"
+        ],
+        "title": "RatingPayload"
+      },
+      "RatingWrite": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "const": "rating",
+            "title": "Mode"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/RatingPayload"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Version"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "mode",
+          "payload",
+          "version"
+        ],
+        "title": "RatingWrite"
+      },
+      "ReviewAnnotation": {
+        "properties": {
+          "annotator": {
+            "type": "string",
+            "title": "Annotator"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Payload"
+          }
+        },
+        "type": "object",
+        "required": [
+          "annotator",
+          "payload"
+        ],
+        "title": "ReviewAnnotation"
+      },
+      "ReviewItem": {
+        "properties": {
+          "item": {
+            "$ref": "#/components/schemas/ItemOut"
+          },
+          "agreement": {
+            "$ref": "#/components/schemas/ItemMetric"
+          },
+          "annotations": {
+            "items": {
+              "$ref": "#/components/schemas/ReviewAnnotation"
+            },
+            "type": "array",
+            "title": "Annotations"
+          },
+          "adjudication": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Adjudication"
+          }
+        },
+        "type": "object",
+        "required": [
+          "item",
+          "agreement",
+          "annotations",
+          "adjudication"
+        ],
+        "title": "ReviewItem"
+      },
+      "SaveOut": {
+        "properties": {
+          "version": {
+            "type": "integer",
+            "title": "Version"
+          },
+          "expires_at": {
+            "type": "number",
+            "title": "Expires At"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "submitted"
+            ],
+            "title": "Status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "version",
+          "expires_at",
+          "status"
+        ],
+        "title": "SaveOut"
+      },
+      "SessionOut": {
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/UserOut"
+          },
+          "csrf": {
+            "type": "string",
+            "title": "Csrf"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user",
+          "csrf"
+        ],
+        "title": "SessionOut"
+      },
+      "Span": {
+        "properties": {
+          "start": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Start"
+          },
+          "end": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "End"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "start",
+          "end",
+          "label",
+          "text"
+        ],
+        "title": "Span"
+      },
+      "StateChange": {
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": [
+              "active",
+              "completed",
+              "archived"
+            ],
+            "title": "State"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "state"
+        ],
+        "title": "StateChange"
+      },
+      "Token": {
+        "properties": {
+          "start": {
+            "type": "integer",
+            "title": "Start"
+          },
+          "end": {
+            "type": "integer",
+            "title": "End"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          }
+        },
+        "type": "object",
+        "required": [
+          "start",
+          "end",
+          "text"
+        ],
+        "title": "Token"
+      },
+      "UserOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "reviewer",
+              "annotator"
+            ],
+            "title": "Role"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "email",
+          "role"
+        ],
+        "title": "UserOut"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+name: Verify Concord
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  application:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.11.29"
+          enable-cache: true
+      - run: pnpm install --frozen-lockfile
+      - run: uv sync --project apps/api --extra dev --frozen
+      - run: pnpm lint
+      - run: pnpm format:check
+      - run: pnpm api:types && git diff --exit-code -- apps/api/openapi.json apps/web/src/lib/api-types.ts
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm db:migrate
+      - run: uv run --directory apps/api alembic downgrade base
+      - run: pnpm db:migrate && pnpm db:seed
+      - run: uv run --directory apps/api alembic check
+      - run: pnpm build
+      - run: pnpm --filter @concord/web exec playwright install --with-deps chromium
+      - run: pnpm test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-evidence
+          path: |
+            artifacts/
+            apps/web/playwright-report/
+            apps/web/test-results/
+  postgres:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: concord_test
+          POSTGRES_USER: concord
+          POSTGRES_PASSWORD: test-only
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U concord -d concord_test"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      DATABASE_URL: postgresql+asyncpg://concord:test-only@localhost:5432/concord_test
+      TEST_DATABASE_URL: postgresql+asyncpg://concord:test-only@localhost:5432/concord_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.11.29"
+      - run: uv sync --project apps/api --extra dev --frozen
+      - run: uv run --directory apps/api alembic upgrade head
+      - run: uv run --directory apps/api alembic check
+      - run: uv run --directory apps/api alembic downgrade base
+      - run: uv run --directory apps/api alembic upgrade head
+      - run: uv run --directory apps/api pytest
+  containers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - run: docker compose build
+      - run: docker compose up -d --wait web
+      - run: curl --fail --retry 10 --retry-delay 5 http://localhost:3000/api/v1/health
+      - run: docker compose logs
+        if: always()
+      - run: docker compose down -v
+        if: always()

@@ -1,0 +1,29 @@
+{
+  "name": "concord",
+  "private": true,
+  "packageManager": "pnpm@11.19.0",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n api,web \"pnpm dev:api\" \"pnpm dev:web\"",
+    "dev:api": "uv run --directory apps/api uvicorn app.main:app --reload --host 127.0.0.1 --port 8000",
+    "dev:web": "pnpm --filter @concord/web dev",
+    "setup": "uv sync --project apps/api --extra dev && pnpm db:migrate && pnpm db:seed",
+    "db:migrate": "uv run --directory apps/api alembic upgrade head",
+    "db:seed": "uv run --directory apps/api python -m app.seed",
+    "api:types": "uv run --directory apps/api python -m app.schema && pnpm --filter @concord/web api:types",
+    "lint": "pnpm --filter @concord/web lint && uv run --project apps/api ruff check apps/api",
+    "format": "prettier --write . && uv run --project apps/api ruff format apps/api",
+    "format:check": "prettier --check . && uv run --project apps/api ruff format --check apps/api",
+    "typecheck": "pnpm --filter @concord/web typecheck",
+    "test": "pnpm --filter @concord/web test && pnpm test:api",
+    "test:api": "uv run --directory apps/api pytest",
+    "test:e2e": "pnpm --filter @concord/web test:e2e",
+    "build": "pnpm --filter @concord/web build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "prettier": "^3.8.1"
+  }
+}

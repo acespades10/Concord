@@ -1,0 +1,9 @@
+pnpm-lock.yaml
+uv.lock
+apps/api/
+apps/web/src/lib/api-types.ts
+node_modules/
+.next/
+artifacts/
+playwright-report/
+test-results/
