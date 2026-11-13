@@ -1,0 +1,1523 @@
+{
+  "recorded_on": "2026-11-14",
+  "timezone": "Asia/Singapore",
+  "simulation": true,
+  "status": "passed",
+  "backend_tests_passed": 122,
+  "export_validation_tests_passed": 53,
+  "test_evidence": "https://github.com/acespades10/Concord/blob/main/benchmarks/RESULTS.md",
+  "items": 30,
+  "submissions": 90,
+  "permission_and_workflow_probes": [
+    {
+      "name": "anonymous cannot list projects",
+      "expected_status": 401,
+      "actual_status": 401,
+      "passed": true
+    },
+    {
+      "name": "outsider project list empty",
+      "passed": true
+    },
+    {
+      "name": "outsider denied project read",
+      "expected_status": 403,
+      "actual_status": 403,
+      "passed": true
+    },
+    {
+      "name": "outsider denied /review",
+      "expected_status": 403,
+      "actual_status": 403,
+      "passed": true
+    },
+    {
+      "name": "outsider denied /exports?format=jsonl&selection=annotations",
+      "expected_status": 403,
+      "actual_status": 403,
+      "passed": true
+    },
+    {
+      "name": "outsider cannot claim",
+      "expected_status": 403,
+      "actual_status": 403,
+      "passed": true
+    },
+    {
+      "name": "annotator denied /metrics",
+      "expected_status": 403,
+      "actual_status": 403,
+      "passed": true
+    },
+    {
+      "name": "annotator denied /review",
+      "expected_status": 403,
+      "actual_status": 403,
+      "passed": true
+    },
+    {
+      "name": "annotator denied /exports?format=jsonl&selection=consensus",
+      "expected_status": 403,
+      "actual_status": 403,
+      "passed": true
+    },
+    {
+      "name": "rater1 cannot create project",
+      "expected_status": 403,
+      "actual_status": 403,
+      "passed": true
+    },
+    {
+      "name": "reviewer cannot create project",
+      "expected_status": 403,
+      "actual_status": 403,
+      "passed": true
+    },
+    {
+      "name": "mutation requires CSRF",
+      "expected_status": 403,
+      "actual_status": 403,
+      "passed": true
+    },
+    {
+      "name": "mutation requires trusted Origin",
+      "expected_status": 403,
+      "actual_status": 403,
+      "passed": true
+    },
+    {
+      "name": "cannot complete before annotation",
+      "expected_status": 409,
+      "actual_status": 409,
+      "passed": true
+    },
+    {
+      "name": "stale draft rejected",
+      "expected_status": 409,
+      "actual_status": 409,
+      "passed": true
+    },
+    {
+      "name": "draft restored and active claim reused",
+      "passed": true
+    },
+    {
+      "name": "stale submit rejected",
+      "expected_status": 409,
+      "actual_status": 409,
+      "passed": true
+    },
+    {
+      "name": "duplicate submit rejected",
+      "expected_status": 409,
+      "actual_status": 409,
+      "passed": true
+    },
+    {
+      "name": "submitted draft immutable",
+      "expected_status": 409,
+      "actual_status": 409,
+      "passed": true
+    },
+    {
+      "name": "annotator cannot alter approved label",
+      "expected_status": 403,
+      "actual_status": 403,
+      "passed": true
+    }
+  ],
+  "review": {
+    "simulation": true,
+    "method": "automatic source-reference adjudication of every item",
+    "limitation": "Source labels are supplied to the script. This demonstrates the review workflow, not human judgment or measured accuracy improvement. Concurrent reviewer writes remain last-write-wins; this sequential run does not test conflict protection.",
+    "inspected_items": 30,
+    "adjudicated_items": 30,
+    "queue_before": 10,
+    "disagreement_items": 10,
+    "unanimous_wrong_items": 5,
+    "queue_after": 0,
+    "raw_annotations_unchanged": true,
+    "raw_annotations_sha256_before": "5b7d82a8a4bd3375d6312c13348a965a6c3b05bfe35f9192b628318515858963",
+    "raw_annotations_sha256_after": "5b7d82a8a4bd3375d6312c13348a965a6c3b05bfe35f9192b628318515858963",
+    "final_labels_match_reference": true,
+    "items": [
+      {
+        "external_id": "sms-00001",
+        "item_id": "aa71108d-252f-4f26-be54-097e8dcf3c03",
+        "votes": [
+          "ham",
+          "ham",
+          "spam"
+        ],
+        "disagreement": true,
+        "unanimous_wrong": false,
+        "reference_label": "ham",
+        "rationale": "Simulated review of sms-00001: set label to 'ham' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00002",
+        "item_id": "7a147909-b5bd-4eac-8d5b-1cf725cfc660",
+        "votes": [
+          "ham",
+          "ham",
+          "spam"
+        ],
+        "disagreement": true,
+        "unanimous_wrong": false,
+        "reference_label": "ham",
+        "rationale": "Simulated review of sms-00002: set label to 'ham' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00003",
+        "item_id": "c48bcf03-44da-4f11-88ef-f264f41686fe",
+        "votes": [
+          "ham",
+          "ham",
+          "ham"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": true,
+        "reference_label": "spam",
+        "rationale": "Simulated review of sms-00003: set label to 'spam' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00004",
+        "item_id": "59e9ab00-c7b0-4b2c-aa2b-a14229fa9aa7",
+        "votes": [
+          "ham",
+          "ham",
+          "ham"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": false,
+        "reference_label": "ham",
+        "rationale": "Simulated review of sms-00004: set label to 'ham' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00005",
+        "item_id": "fa3d7293-0881-4096-b7dd-e0d60d2513d5",
+        "votes": [
+          "ham",
+          "ham",
+          "ham"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": false,
+        "reference_label": "ham",
+        "rationale": "Simulated review of sms-00005: set label to 'ham' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00006",
+        "item_id": "75e3960b-d760-440d-81cc-a88380c22a67",
+        "votes": [
+          "spam",
+          "spam",
+          "spam"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": false,
+        "reference_label": "spam",
+        "rationale": "Simulated review of sms-00006: set label to 'spam' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00007",
+        "item_id": "9e06dc6f-f1ab-4a83-92e0-b5a0acaa1226",
+        "votes": [
+          "ham",
+          "ham",
+          "spam"
+        ],
+        "disagreement": true,
+        "unanimous_wrong": false,
+        "reference_label": "ham",
+        "rationale": "Simulated review of sms-00007: set label to 'ham' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00008",
+        "item_id": "1665acd3-7012-4bb3-93f2-71ec289e6ccc",
+        "votes": [
+          "ham",
+          "ham",
+          "spam"
+        ],
+        "disagreement": true,
+        "unanimous_wrong": false,
+        "reference_label": "ham",
+        "rationale": "Simulated review of sms-00008: set label to 'ham' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00009",
+        "item_id": "77e503da-15fe-4424-9170-a3af341f62ea",
+        "votes": [
+          "ham",
+          "ham",
+          "ham"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": true,
+        "reference_label": "spam",
+        "rationale": "Simulated review of sms-00009: set label to 'spam' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00010",
+        "item_id": "62a8a01b-9843-4372-9e5c-d60e66d6eefc",
+        "votes": [
+          "spam",
+          "spam",
+          "spam"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": false,
+        "reference_label": "spam",
+        "rationale": "Simulated review of sms-00010: set label to 'spam' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00011",
+        "item_id": "f2a09ea0-1930-44da-9978-c411880257fa",
+        "votes": [
+          "ham",
+          "ham",
+          "ham"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": false,
+        "reference_label": "ham",
+        "rationale": "Simulated review of sms-00011: set label to 'ham' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00012",
+        "item_id": "0106dd5c-f575-4033-9903-cd891a883871",
+        "votes": [
+          "spam",
+          "spam",
+          "spam"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": false,
+        "reference_label": "spam",
+        "rationale": "Simulated review of sms-00012: set label to 'spam' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00013",
+        "item_id": "0c314b8b-1876-460e-8038-1b84eef90f3a",
+        "votes": [
+          "ham",
+          "spam",
+          "spam"
+        ],
+        "disagreement": true,
+        "unanimous_wrong": false,
+        "reference_label": "spam",
+        "rationale": "Simulated review of sms-00013: set label to 'spam' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00014",
+        "item_id": "575f7359-2a10-4687-915e-c84eeaeb332b",
+        "votes": [
+          "ham",
+          "ham",
+          "spam"
+        ],
+        "disagreement": true,
+        "unanimous_wrong": false,
+        "reference_label": "ham",
+        "rationale": "Simulated review of sms-00014: set label to 'ham' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00015",
+        "item_id": "012ee679-6875-4cd5-afb7-303093382cdd",
+        "votes": [
+          "spam",
+          "spam",
+          "spam"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": true,
+        "reference_label": "ham",
+        "rationale": "Simulated review of sms-00015: set label to 'ham' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00016",
+        "item_id": "f726bc3e-51c8-432f-abc4-45d91f430ddd",
+        "votes": [
+          "spam",
+          "spam",
+          "spam"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": false,
+        "reference_label": "spam",
+        "rationale": "Simulated review of sms-00016: set label to 'spam' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00017",
+        "item_id": "dc0d6a21-d16a-480e-9244-1c25a494c640",
+        "votes": [
+          "ham",
+          "ham",
+          "ham"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": false,
+        "reference_label": "ham",
+        "rationale": "Simulated review of sms-00017: set label to 'ham' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00018",
+        "item_id": "174c3378-7297-45a9-b826-e3950e60d432",
+        "votes": [
+          "ham",
+          "ham",
+          "ham"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": false,
+        "reference_label": "ham",
+        "rationale": "Simulated review of sms-00018: set label to 'ham' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00019",
+        "item_id": "419b0cd7-58bf-42a0-bff3-337baf3367e9",
+        "votes": [
+          "ham",
+          "ham",
+          "spam"
+        ],
+        "disagreement": true,
+        "unanimous_wrong": false,
+        "reference_label": "ham",
+        "rationale": "Simulated review of sms-00019: set label to 'ham' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00020",
+        "item_id": "b4b04779-d690-493f-92a0-e718d55fbdd9",
+        "votes": [
+          "ham",
+          "spam",
+          "spam"
+        ],
+        "disagreement": true,
+        "unanimous_wrong": false,
+        "reference_label": "spam",
+        "rationale": "Simulated review of sms-00020: set label to 'spam' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00021",
+        "item_id": "af078169-9f5e-4b18-a1fd-066251004b28",
+        "votes": [
+          "spam",
+          "spam",
+          "spam"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": true,
+        "reference_label": "ham",
+        "rationale": "Simulated review of sms-00021: set label to 'ham' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00022",
+        "item_id": "ea228e2a-4a37-4df5-a848-9bf4b135095d",
+        "votes": [
+          "ham",
+          "ham",
+          "ham"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": false,
+        "reference_label": "ham",
+        "rationale": "Simulated review of sms-00022: set label to 'ham' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00023",
+        "item_id": "ff0d045d-5e24-47e8-86f4-3575fa024dc2",
+        "votes": [
+          "ham",
+          "ham",
+          "ham"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": false,
+        "reference_label": "ham",
+        "rationale": "Simulated review of sms-00023: set label to 'ham' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00035",
+        "item_id": "5f00c209-8c04-42bb-9ae5-84b4856bd448",
+        "votes": [
+          "spam",
+          "spam",
+          "spam"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": false,
+        "reference_label": "spam",
+        "rationale": "Simulated review of sms-00035: set label to 'spam' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00043",
+        "item_id": "aa4cf48c-c120-4b98-91a7-8039c7f1360b",
+        "votes": [
+          "ham",
+          "spam",
+          "spam"
+        ],
+        "disagreement": true,
+        "unanimous_wrong": false,
+        "reference_label": "spam",
+        "rationale": "Simulated review of sms-00043: set label to 'spam' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00055",
+        "item_id": "f8fee1b5-3769-4c93-ab4b-e2e71448ce69",
+        "votes": [
+          "ham",
+          "spam",
+          "spam"
+        ],
+        "disagreement": true,
+        "unanimous_wrong": false,
+        "reference_label": "spam",
+        "rationale": "Simulated review of sms-00055: set label to 'spam' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00057",
+        "item_id": "4260c695-dd67-4032-8620-a8d6affc0e7e",
+        "votes": [
+          "ham",
+          "ham",
+          "ham"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": true,
+        "reference_label": "spam",
+        "rationale": "Simulated review of sms-00057: set label to 'spam' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00066",
+        "item_id": "5e390fb3-ce34-4b89-84de-5be27ead02e6",
+        "votes": [
+          "spam",
+          "spam",
+          "spam"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": false,
+        "reference_label": "spam",
+        "rationale": "Simulated review of sms-00066: set label to 'spam' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00068",
+        "item_id": "053b3bc5-efe6-48b8-87a1-62eb0139308c",
+        "votes": [
+          "spam",
+          "spam",
+          "spam"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": false,
+        "reference_label": "spam",
+        "rationale": "Simulated review of sms-00068: set label to 'spam' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      },
+      {
+        "external_id": "sms-00069",
+        "item_id": "243ed2eb-4fb7-4070-8a88-39f85cbf4d4b",
+        "votes": [
+          "spam",
+          "spam",
+          "spam"
+        ],
+        "disagreement": false,
+        "unanimous_wrong": false,
+        "reference_label": "spam",
+        "rationale": "Simulated review of sms-00069: set label to 'spam' using the source reference label. Automatic reference-based adjudication; no human judgment was performed."
+      }
+    ]
+  },
+  "metrics_before": {
+    "revision": 91,
+    "total_items": 30,
+    "submissions": 90,
+    "expected_submissions": 90,
+    "fully_rated": 30,
+    "resolved": 20,
+    "unresolved": 10,
+    "coverage": 1.0,
+    "fleiss": {
+      "value": 0.5553359683794467,
+      "reason": null,
+      "n": 30
+    },
+    "distribution": {
+      "ham": 46,
+      "spam": 44
+    },
+    "annotators": {
+      "rater1": "rater1",
+      "rater2": "rater2",
+      "rater3": "rater3"
+    },
+    "pairs": [
+      {
+        "left": "rater1",
+        "right": "rater2",
+        "shared_items": 30,
+        "kappa": {
+          "value": 0.6666666666666667,
+          "reason": null,
+          "n": 30
+        },
+        "span_f1": null
+      },
+      {
+        "left": "rater1",
+        "right": "rater3",
+        "shared_items": 30,
+        "kappa": {
+          "value": 0.6666666666666667,
+          "reason": null,
+          "n": 30
+        },
+        "span_f1": null
+      },
+      {
+        "left": "rater2",
+        "right": "rater3",
+        "shared_items": 30,
+        "kappa": {
+          "value": 0.33333333333333326,
+          "reason": null,
+          "n": 30
+        },
+        "span_f1": null
+      }
+    ],
+    "items": [
+      {
+        "item_id": "aa71108d-252f-4f26-be54-097e8dcf3c03",
+        "external_id": "sms-00001",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": false,
+        "reason": "below_threshold",
+        "payload": {
+          "label": "ham"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "7a147909-b5bd-4eac-8d5b-1cf725cfc660",
+        "external_id": "sms-00002",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": false,
+        "reason": "below_threshold",
+        "payload": {
+          "label": "ham"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "c48bcf03-44da-4f11-88ef-f264f41686fe",
+        "external_id": "sms-00003",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "59e9ab00-c7b0-4b2c-aa2b-a14229fa9aa7",
+        "external_id": "sms-00004",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "fa3d7293-0881-4096-b7dd-e0d60d2513d5",
+        "external_id": "sms-00005",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "75e3960b-d760-440d-81cc-a88380c22a67",
+        "external_id": "sms-00006",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "9e06dc6f-f1ab-4a83-92e0-b5a0acaa1226",
+        "external_id": "sms-00007",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": false,
+        "reason": "below_threshold",
+        "payload": {
+          "label": "ham"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "1665acd3-7012-4bb3-93f2-71ec289e6ccc",
+        "external_id": "sms-00008",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": false,
+        "reason": "below_threshold",
+        "payload": {
+          "label": "ham"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "77e503da-15fe-4424-9170-a3af341f62ea",
+        "external_id": "sms-00009",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "62a8a01b-9843-4372-9e5c-d60e66d6eefc",
+        "external_id": "sms-00010",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "f2a09ea0-1930-44da-9978-c411880257fa",
+        "external_id": "sms-00011",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "0106dd5c-f575-4033-9903-cd891a883871",
+        "external_id": "sms-00012",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "0c314b8b-1876-460e-8038-1b84eef90f3a",
+        "external_id": "sms-00013",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": false,
+        "reason": "below_threshold",
+        "payload": {
+          "label": "spam"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "575f7359-2a10-4687-915e-c84eeaeb332b",
+        "external_id": "sms-00014",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": false,
+        "reason": "below_threshold",
+        "payload": {
+          "label": "ham"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "012ee679-6875-4cd5-afb7-303093382cdd",
+        "external_id": "sms-00015",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "f726bc3e-51c8-432f-abc4-45d91f430ddd",
+        "external_id": "sms-00016",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "dc0d6a21-d16a-480e-9244-1c25a494c640",
+        "external_id": "sms-00017",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "174c3378-7297-45a9-b826-e3950e60d432",
+        "external_id": "sms-00018",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "419b0cd7-58bf-42a0-bff3-337baf3367e9",
+        "external_id": "sms-00019",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": false,
+        "reason": "below_threshold",
+        "payload": {
+          "label": "ham"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "b4b04779-d690-493f-92a0-e718d55fbdd9",
+        "external_id": "sms-00020",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": false,
+        "reason": "below_threshold",
+        "payload": {
+          "label": "spam"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "af078169-9f5e-4b18-a1fd-066251004b28",
+        "external_id": "sms-00021",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "ea228e2a-4a37-4df5-a848-9bf4b135095d",
+        "external_id": "sms-00022",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "ff0d045d-5e24-47e8-86f4-3575fa024dc2",
+        "external_id": "sms-00023",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "5f00c209-8c04-42bb-9ae5-84b4856bd448",
+        "external_id": "sms-00035",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "aa4cf48c-c120-4b98-91a7-8039c7f1360b",
+        "external_id": "sms-00043",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": false,
+        "reason": "below_threshold",
+        "payload": {
+          "label": "spam"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "f8fee1b5-3769-4c93-ab4b-e2e71448ce69",
+        "external_id": "sms-00055",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": false,
+        "reason": "below_threshold",
+        "payload": {
+          "label": "spam"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "4260c695-dd67-4032-8620-a8d6affc0e7e",
+        "external_id": "sms-00057",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "5e390fb3-ce34-4b89-84de-5be27ead02e6",
+        "external_id": "sms-00066",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "053b3bc5-efe6-48b8-87a1-62eb0139308c",
+        "external_id": "sms-00068",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam"
+        },
+        "adjudicated": false
+      },
+      {
+        "item_id": "243ed2eb-4fb7-4070-8a88-39f85cbf4d4b",
+        "external_id": "sms-00069",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam"
+        },
+        "adjudicated": false
+      }
+    ]
+  },
+  "metrics_after": {
+    "revision": 121,
+    "total_items": 30,
+    "submissions": 90,
+    "expected_submissions": 90,
+    "fully_rated": 30,
+    "resolved": 30,
+    "unresolved": 0,
+    "coverage": 1.0,
+    "fleiss": {
+      "value": 0.5553359683794467,
+      "reason": null,
+      "n": 30
+    },
+    "distribution": {
+      "ham": 46,
+      "spam": 44
+    },
+    "annotators": {
+      "rater1": "rater1",
+      "rater2": "rater2",
+      "rater3": "rater3"
+    },
+    "pairs": [
+      {
+        "left": "rater1",
+        "right": "rater2",
+        "shared_items": 30,
+        "kappa": {
+          "value": 0.6666666666666667,
+          "reason": null,
+          "n": 30
+        },
+        "span_f1": null
+      },
+      {
+        "left": "rater1",
+        "right": "rater3",
+        "shared_items": 30,
+        "kappa": {
+          "value": 0.6666666666666667,
+          "reason": null,
+          "n": 30
+        },
+        "span_f1": null
+      },
+      {
+        "left": "rater2",
+        "right": "rater3",
+        "shared_items": 30,
+        "kappa": {
+          "value": 0.33333333333333326,
+          "reason": null,
+          "n": 30
+        },
+        "span_f1": null
+      }
+    ],
+    "items": [
+      {
+        "item_id": "aa71108d-252f-4f26-be54-097e8dcf3c03",
+        "external_id": "sms-00001",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "7a147909-b5bd-4eac-8d5b-1cf725cfc660",
+        "external_id": "sms-00002",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "c48bcf03-44da-4f11-88ef-f264f41686fe",
+        "external_id": "sms-00003",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "59e9ab00-c7b0-4b2c-aa2b-a14229fa9aa7",
+        "external_id": "sms-00004",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "fa3d7293-0881-4096-b7dd-e0d60d2513d5",
+        "external_id": "sms-00005",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "75e3960b-d760-440d-81cc-a88380c22a67",
+        "external_id": "sms-00006",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "9e06dc6f-f1ab-4a83-92e0-b5a0acaa1226",
+        "external_id": "sms-00007",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "1665acd3-7012-4bb3-93f2-71ec289e6ccc",
+        "external_id": "sms-00008",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "77e503da-15fe-4424-9170-a3af341f62ea",
+        "external_id": "sms-00009",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "62a8a01b-9843-4372-9e5c-d60e66d6eefc",
+        "external_id": "sms-00010",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "f2a09ea0-1930-44da-9978-c411880257fa",
+        "external_id": "sms-00011",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "0106dd5c-f575-4033-9903-cd891a883871",
+        "external_id": "sms-00012",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "0c314b8b-1876-460e-8038-1b84eef90f3a",
+        "external_id": "sms-00013",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "575f7359-2a10-4687-915e-c84eeaeb332b",
+        "external_id": "sms-00014",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "012ee679-6875-4cd5-afb7-303093382cdd",
+        "external_id": "sms-00015",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "f726bc3e-51c8-432f-abc4-45d91f430ddd",
+        "external_id": "sms-00016",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "dc0d6a21-d16a-480e-9244-1c25a494c640",
+        "external_id": "sms-00017",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "174c3378-7297-45a9-b826-e3950e60d432",
+        "external_id": "sms-00018",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "419b0cd7-58bf-42a0-bff3-337baf3367e9",
+        "external_id": "sms-00019",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "b4b04779-d690-493f-92a0-e718d55fbdd9",
+        "external_id": "sms-00020",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "af078169-9f5e-4b18-a1fd-066251004b28",
+        "external_id": "sms-00021",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "ea228e2a-4a37-4df5-a848-9bf4b135095d",
+        "external_id": "sms-00022",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "ff0d045d-5e24-47e8-86f4-3575fa024dc2",
+        "external_id": "sms-00023",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "ham",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "5f00c209-8c04-42bb-9ae5-84b4856bd448",
+        "external_id": "sms-00035",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "aa4cf48c-c120-4b98-91a7-8039c7f1360b",
+        "external_id": "sms-00043",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "f8fee1b5-3769-4c93-ab4b-e2e71448ce69",
+        "external_id": "sms-00055",
+        "submitted": 3,
+        "vote_share": 0.6666666666666666,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "4260c695-dd67-4032-8620-a8d6affc0e7e",
+        "external_id": "sms-00057",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "5e390fb3-ce34-4b89-84de-5be27ead02e6",
+        "external_id": "sms-00066",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "053b3bc5-efe6-48b8-87a1-62eb0139308c",
+        "external_id": "sms-00068",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam",
+          "note": ""
+        },
+        "adjudicated": true
+      },
+      {
+        "item_id": "243ed2eb-4fb7-4070-8a88-39f85cbf4d4b",
+        "external_id": "sms-00069",
+        "submitted": 3,
+        "vote_share": 1.0,
+        "resolved": true,
+        "reason": null,
+        "payload": {
+          "label": "spam",
+          "note": ""
+        },
+        "adjudicated": true
+      }
+    ]
+  },
+  "environment": {
+    "platform": "Windows-10-10.0.19045-SP0",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 21 Model 56 Stepping 1, AuthenticAMD",
+    "logical_cpus": 4,
+    "python": "3.12.13",
+    "sqlite": "3.53.1",
+    "packages": {
+      "fastapi": "0.142.2",
+      "sqlalchemy": "2.1.3",
+      "httpx": "0.28.1"
+    },
+    "parallel_clients": false,
+    "timing_clock": "time.perf_counter"
+  },
+  "transport": "httpx ASGITransport in process; real HTTP API routes and isolated local SQLite; no browser or network latency measured",
+  "stage_seconds": {
+    "schema_and_accounts": 0.2806486999616027,
+    "authentication": 2.3294820999726653,
+    "project_import_activation": 0.14976119995117188,
+    "permission_probes": 0.1276511000469327,
+    "claim_save_submit": 7.003019799944013,
+    "metrics_and_independent_comparison": 0.033678799867630005,
+    "review_and_after_metrics": 0.9145725998096168,
+    "completion_and_exports": 0.09527660021558404,
+    "independent_export_validation": 0.8260705997236073,
+    "total": 12.537181300111115
+  },
+  "input_sha256": {
+    "dataset": "8d0bdc6744d5af7a4ed81936d4be4b19e74c6406ef6761bbaee8e12ab0747509",
+    "reference": "add75e8c8ec172a148c07201221026f736e8f7db4e89ae806d680ffedfbc37fe"
+  },
+  "independent_validation": {
+    "validator_version": "1.0.0",
+    "passed": true,
+    "simulation": true,
+    "note": "Scripted votes and automatic source-reference adjudication; no human agreement or quality claim.",
+    "counts": {
+      "dataset": 30,
+      "reference": 30,
+      "consensus": 30,
+      "annotations": 90,
+      "submissions": 90,
+      "unique_items": 30,
+      "raters": 3,
+      "adjudicated": 30
+    },
+    "checks": [
+      {
+        "name": "read_all_inputs_and_hash_exact_bytes",
+        "passed": true
+      },
+      {
+        "name": "strict_json_and_jsonl",
+        "passed": true
+      },
+      {
+        "name": "source_unique_ids_valid_labels_and_safe_metadata",
+        "passed": true
+      },
+      {
+        "name": "consensus_manifest_schema_configuration_selection_counts",
+        "passed": true
+      },
+      {
+        "name": "annotations_manifest_schema_configuration_selection_counts",
+        "passed": true
+      },
+      {
+        "name": "same_project_and_metric_revision",
+        "passed": true
+      },
+      {
+        "name": "scripted_votes_independent_policy_and_complete_unique_submissions",
+        "passed": true
+      },
+      {
+        "name": "raw_exact_source_roundtrip_pseudonyms_payloads_unique_complete_coverage",
+        "passed": true
+      },
+      {
+        "name": "consensus_exact_source_roundtrip_truth_adjudication_reviewer_and_raw_vote_support",
+        "passed": true
+      }
+    ],
+    "files": {
+      "dataset": {
+        "path": "dataset.jsonl",
+        "sha256": "8d0bdc6744d5af7a4ed81936d4be4b19e74c6406ef6761bbaee8e12ab0747509",
+        "bytes": 6164
+      },
+      "reference": {
+        "path": "reference-labels.json",
+        "sha256": "add75e8c8ec172a148c07201221026f736e8f7db4e89ae806d680ffedfbc37fe",
+        "bytes": 678
+      },
+      "consensus": {
+        "path": "consensus.jsonl",
+        "sha256": "e23671049a8a194bb56929e0c0b4b598fc69e4b2f801b29aa823f35c5f39e130",
+        "bytes": 24258
+      },
+      "annotations": {
+        "path": "annotations.jsonl",
+        "sha256": "1d1bc1ef7357eb9ec34790885365b3c7399682848310e27085d2321dde2a0d9e",
+        "bytes": 59473
+      },
+      "submissions": {
+        "path": "simulated-submissions.json",
+        "sha256": "7a2a4ecab1b30e764a297ecc18f9cfd7a1b606279ff4234045d9996898c62380",
+        "bytes": 36461
+      }
+    },
+    "project_id": "c8f33429-5685-443f-a44f-2ec269d97b86"
+  },
+  "limits": "Simulated annotations and automated source-reference review; no human agreement, usability, adoption, model accuracy or production performance claim."
+}

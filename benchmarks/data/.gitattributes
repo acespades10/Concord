@@ -1,0 +1,4 @@
+dataset.jsonl text eol=lf
+reference-labels.json text eol=lf
+manifest.json text eol=lf
+source/** -text

@@ -1,0 +1,476 @@
+<!doctype html>
+<html
+  lang="en"
+  data-type="software"
+  data-radius="sharp"
+  data-ground="sage"
+  data-buttons="solid"
+  data-motion
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Concord | Data annotation, with evidence</title>
+    <meta
+      name="description"
+      content="An annotation workspace for small teams. Assign records, review disagreements and export data. Inspect Concord's reproducible benchmark and 122 passing backend tests."
+    />
+    <meta name="page-type" content="software" />
+    <meta name="site-kind" content="software" />
+    <meta name="theme-color" content="#faf9f6" />
+    <meta
+      property="og:title"
+      content="Concord | Data annotation, with evidence"
+    />
+    <meta
+      property="og:description"
+      content="From independent labels to reviewed datasets. Inspect the workflow, the controlled benchmark and the checks behind the output."
+    />
+    <meta property="og:type" content="website" />
+    <link
+      rel="preload"
+      href="assets/fonts/instrument-sans.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="assets/system.css" />
+    <link rel="stylesheet" href="assets/ui/cards.css" />
+    <link rel="stylesheet" href="assets/motion/motion.css" />
+    <link rel="stylesheet" href="assets/layout/layout.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="assets/system.js"></script>
+    <script type="module" src="assets/motion/motion.js"></script>
+    <script type="module" src="site.js"></script>
+  </head>
+  <body>
+    <!-- Software / centred hero / Concord cream and sage / Instrument Sans / hover motion only. -->
+    <header class="nav">
+      <div class="wrap nav__bar">
+        <a class="skip-link" href="#main">Skip to content</a>
+        <a class="nav__logo" href="#top" aria-label="Concord home"
+          >concord<span class="brand-period" aria-hidden="true">.</span></a
+        >
+        <nav class="nav__links" aria-label="Main navigation">
+          <div class="nav__item">
+            <a class="nav__link" href="#workflow">Workflow</a>
+          </div>
+          <div class="nav__item">
+            <a class="nav__link" href="#evidence">Validation</a>
+          </div>
+          <div class="nav__item">
+            <a class="nav__link" href="#workspace">Workspace</a>
+          </div>
+          <div class="nav__item">
+            <a class="nav__link" href="#reproduce">Reproduce</a>
+          </div>
+        </nav>
+        <div class="nav__actions">
+          <a
+            class="btn btn--primary"
+            href="https://github.com/acespades10/Concord"
+            >View repository</a
+          >
+        </div>
+        <button
+          class="nav__toggle"
+          type="button"
+          aria-expanded="false"
+          aria-label="Open menu"
+        >
+          Menu
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero hero--centred" id="top" aria-labelledby="hero-title">
+        <div class="wrap">
+          <div class="hero-text">
+            <div class="hero__c">
+              <h1 id="hero-title">Data annotation<br />for careful teams.</h1>
+              <p class="hero__lead">
+                Assign records, compare independent labels and export reviewed
+                data. Concord keeps the decisions behind your dataset visible.
+              </p>
+              <div class="btn-row">
+                <a class="btn btn--primary" href="#evidence"
+                  >See the evidence</a
+                >
+                <a class="btn btn--secondary" href="#workflow"
+                  >See the workflow</a
+                >
+              </div>
+              <p class="hero-proof">
+                <span class="pass-mark" aria-hidden="true">✓</span> 122 backend
+                tests passed <span class="proof-date">· 14 Nov 2026</span>
+              </p>
+            </div>
+            <div class="hero__window">
+              <div
+                class="ly-piece app-frame"
+                aria-label="Recorded Concord benchmark results"
+              >
+                <div class="preview-bar">
+                  <strong>SMS label review</strong
+                  ><span>Recorded run · simulated annotations</span>
+                </div>
+                <div class="preview-body">
+                  <div class="preview-sidebar">
+                    <span class="preview-caption">Review summary</span>
+                    <div class="preview-count">
+                      <strong>30</strong><span>records reviewed</span>
+                    </div>
+                    <dl class="preview-totals">
+                      <div>
+                        <dt>Submissions</dt>
+                        <dd>90</dd>
+                      </div>
+                      <div>
+                        <dt>Disagreements</dt>
+                        <dd>10</dd>
+                      </div>
+                      <div>
+                        <dt>Approved export</dt>
+                        <dd>30</dd>
+                      </div>
+                    </dl>
+                  </div>
+                  <div class="preview-record">
+                    <div class="record-heading">
+                      <code>sms-00015</code
+                      ><span class="state-tag">Adjudicated</span>
+                    </div>
+                    <p class="message-text">
+                      I HAVE A DATE ON SUNDAY WITH WILL!!
+                    </p>
+                    <div class="vote-row">
+                      <span>Rater 1 <b>spam</b></span
+                      ><span>Rater 2 <b>spam</b></span
+                      ><span>Rater 3 <b>spam</b></span>
+                    </div>
+                    <div class="review-result">
+                      <span>Source-based review</span><strong>ham</strong
+                      ><span class="review-comment"
+                        >Unanimous, but wrong. Corrected against the reference
+                        label.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="workflow" aria-labelledby="workflow-title">
+        <div class="wrap">
+          <h2 id="workflow-title">Every label has a history.</h2>
+          <div class="grid workflow-grid">
+            <div class="span-4 workflow-copy">
+              <p class="t-lead">
+                Agreement is useful.<br />Review still matters.
+              </p>
+              <p>
+                Five records in the benchmark received the same wrong label from
+                all three simulated annotators. Reviewing every record caught
+                them.
+              </p>
+              <p class="t-small muted">
+                Inspect one recorded case. These controls replay evidence; they
+                do not change the dataset.
+              </p>
+              <a class="link" href="evidence/consensus.jsonl" download
+                >Download approved JSONL</a
+              >
+            </div>
+            <div class="span-8 workflow-visual">
+              <div
+                class="tabs"
+                role="tablist"
+                aria-label="Recorded annotation stages"
+              >
+                <button
+                  class="tab"
+                  id="tab-votes"
+                  type="button"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="panel-votes"
+                >
+                  Submissions
+                </button>
+                <button
+                  class="tab"
+                  id="tab-review"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="panel-review"
+                  tabindex="-1"
+                >
+                  Review
+                </button>
+                <button
+                  class="tab"
+                  id="tab-export"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="panel-export"
+                  tabindex="-1"
+                >
+                  Export
+                </button>
+              </div>
+              <div class="record-stage">
+                <div class="record-heading">
+                  <code>sms-00015</code><span>UCI SMS Spam Collection</span>
+                </div>
+                <p class="source-message">
+                  “I HAVE A DATE ON SUNDAY WITH WILL!!”
+                </p>
+                <div
+                  id="panel-votes"
+                  role="tabpanel"
+                  aria-labelledby="tab-votes"
+                  tabindex="0"
+                >
+                  <div class="record-list">
+                    <div>
+                      <span>Simulated annotator 1</span><strong>spam</strong>
+                    </div>
+                    <div>
+                      <span>Simulated annotator 2</span><strong>spam</strong>
+                    </div>
+                    <div>
+                      <span>Simulated annotator 3</span><strong>spam</strong>
+                    </div>
+                  </div>
+                  <p class="stage-note">
+                    3 of 3 agree. Automatic consensus resolves this item, even
+                    though the source label is <strong>ham</strong>.
+                  </p>
+                </div>
+                <div
+                  id="panel-review"
+                  role="tabpanel"
+                  aria-labelledby="tab-review"
+                  tabindex="0"
+                  hidden
+                >
+                  <div class="decision-pair">
+                    <div>
+                      <span>Original consensus</span><strong>spam</strong>
+                    </div>
+                    <div><span>Reviewed label</span><strong>ham</strong></div>
+                  </div>
+                  <p class="stage-note">
+                    The scripted reviewer checks the established source label
+                    and records a final decision. All three original submissions
+                    remain unchanged.
+                  </p>
+                  <p class="t-small muted">
+                    Automatic source-reference adjudication. No human judgment
+                    was performed.
+                  </p>
+                </div>
+                <div
+                  id="panel-export"
+                  role="tabpanel"
+                  aria-labelledby="tab-export"
+                  tabindex="0"
+                  hidden
+                >
+                  <pre
+                    class="export-fragment"
+                    aria-label="Selected fields from the approved record"
+                  ><code>{
+  "external_id": "sms-00015",
+  "payload": { "label": "ham", "note": "" },
+  "resolved": true,
+  "resolution": "adjudicated"
+}</code></pre>
+                  <p class="stage-note">
+                    Selected fields from the real export. A separate Python
+                    validator checked the full record, including original text,
+                    IDs and metadata.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section evidence-section"
+        id="evidence"
+        aria-labelledby="evidence-title"
+      >
+        <div class="wrap">
+          <h2 id="evidence-title">Claims you can check.</h2>
+          <div class="grid evidence-grid">
+            <div class="span-4 evidence-intro">
+              <p class="t-lead">A small benchmark.<br />A complete workflow.</p>
+              <p>
+                Import, assignment, simulated annotation, review and export run
+                through Concord’s real API.
+              </p>
+              <p class="t-small">
+                Recorded locally on 14 November 2026. SQLite, sequential
+                requests, 30 source messages.
+              </p>
+              <a class="link" href="evidence/RESULTS.md"
+                >Read the validation report</a
+              >
+            </div>
+            <div class="span-8 proof-list">
+              <a
+                href="https://github.com/acespades10/Concord/tree/main/apps/api/tests"
+                ><span class="proof-number">122</span
+                ><span
+                  ><strong>Backend tests passed</strong
+                  ><small
+                    >Agreement, permissions, workflow and export
+                    behavior.</small
+                  ></span
+                ><span class="proof-status">Pass</span></a
+              >
+              <a
+                href="https://github.com/acespades10/Concord/blob/main/apps/api/tests/test_benchmark_exports.py"
+                ><span class="proof-number">53</span
+                ><span
+                  ><strong>Export validation tests</strong
+                  ><small
+                    >Corrupt text, labels, IDs, metadata and manifests are
+                    rejected.</small
+                  ></span
+                ><span class="proof-status">Pass</span></a
+              >
+              <a href="evidence/results.json"
+                ><span class="proof-number">20</span
+                ><span
+                  ><strong>Permission and editing probes</strong
+                  ><small
+                    >Unauthorized access, stale writes and duplicate
+                    submissions.</small
+                  ></span
+                ><span class="proof-status">Pass</span></a
+              >
+              <a href="evidence/REFERENCE.md"
+                ><span class="proof-number">κ</span
+                ><span
+                  ><strong>Independently checked agreement</strong
+                  ><small
+                    >Published examples, exact fractions and 64 small vote
+                    matrices.</small
+                  ></span
+                ><span class="proof-status">Pass</span></a
+              >
+            </div>
+          </div>
+          <p class="evidence-limit">
+            Simulated annotations test the workflow. They do not establish human
+            agreement, usability, adoption or improved model accuracy.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="workspace" aria-labelledby="workspace-title">
+        <div class="wrap">
+          <h2 id="workspace-title">One workspace. Three annotation modes.</h2>
+          <div class="workspace-lead">
+            <p>
+              Rate responses, mark named entities or compare blinded A/B
+              outputs.
+            </p>
+            <p class="t-small muted">
+              The application below shows seeded demo projects. The benchmark
+              exercises categorical labels.
+            </p>
+          </div>
+          <div class="product-screen">
+            <img
+              src="assets/workspace.webp"
+              alt="Concord workspace with rating, entity annotation and blinded comparison projects, team roles and project queues"
+              width="1440"
+              height="1307"
+              loading="lazy"
+              decoding="async"
+              data-source="client"
+              data-subject="Concord application workspace"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="closing" id="reproduce">
+      <div class="wrap">
+        <div class="closing-main">
+          <h2>Inspect the data.<br />Reproduce the result.</h2>
+          <div class="grid reproduce-grid">
+            <div class="span-5">
+              <p>
+                Run the benchmark locally. It creates an isolated database and
+                checks the exports in a separate Python process.
+              </p>
+              <div class="btn-row">
+                <a
+                  class="btn btn--primary"
+                  href="https://github.com/acespades10/Concord"
+                  >View repository</a
+                ><a
+                  class="btn btn--secondary"
+                  href="https://github.com/acespades10/Concord/blob/main/benchmarks/README.md"
+                  >Read the run guide</a
+                >
+              </div>
+              <p class="t-small muted">
+                Requires uv and Python 3.12. Use a fresh output directory for
+                each run.
+              </p>
+            </div>
+            <div class="span-7 command-block">
+              <div class="command-heading">
+                <span>From the repository root</span
+                ><button
+                  class="copy-control"
+                  type="button"
+                  data-copy="run-command"
+                >
+                  Copy commands
+                </button>
+              </div>
+              <pre
+                id="run-command"
+              ><code>uv sync --project apps/api --extra dev --frozen
+uv run --project apps/api --extra dev --frozen python benchmarks/run.py --output .local/benchmark</code></pre>
+              <p class="copy-status" role="status" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+        <div class="footer-links">
+          <div>
+            <a class="nav__logo" href="#top"
+              >concord<span class="brand-period" aria-hidden="true">.</span></a
+            ><span>Annotation and quality control.</span>
+          </div>
+          <div>
+            <a href="evidence/DATASET.md">Dataset &amp; license</a
+            ><a href="https://github.com/acespades10/Concord">GitHub</a
+            ><a href="evidence/results.json">Run evidence</a>
+          </div>
+          <p class="credits-line">
+            SMS Spam Collection by Almeida &amp; Hidalgo, UCI (2011).
+            <a href="https://doi.org/10.24432/C5CC84">Source</a> ·
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a
+            >. Selected and converted; text and labels unchanged.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -6,6 +6,33 @@ Concord turns independent human judgments into reviewable datasets. Teams can ra
 
 ![Concord workspace](docs/workspace-desktop.png)
 
+## Project website
+
+The [static website](site/README.md) presents the product, a recorded annotation
+workflow, downloadable validated exports and the evidence behind the benchmark.
+Preview it with `python -m http.server 8080 --directory site`. The GitHub Pages
+workflow validates the site while this repository is private and deploys after
+the owner makes it public. See the site guide for setup instructions.
+
+## Reproduce the annotation benchmark
+
+The [sample project](benchmarks/README.md) runs dataset import, assignment, 90
+**simulated annotations**, review, and independently validated JSONL export against
+Concord's real API. It uses 30 original SMS messages with source labels and a
+checksum-pinned, CC BY 4.0 licensed dataset. No running server is required.
+
+```sh
+uv sync --project apps/api --extra dev --frozen
+uv run --project apps/api --extra dev --frozen python benchmarks/run.py --output .local/benchmark
+```
+
+The benchmark includes 10 disagreements and 5 unanimously wrong controls. A
+separate reference implementation checks the agreement metrics, and a standalone
+Python process checks the exported IDs, text, labels, metadata, and submissions.
+The output directory contains the reports, exports, and an inspectable SQLite
+project. Use a new output directory for each run. These are scripted workflow
+checks, not evidence of human agreement, usability, adoption, or model accuracy.
+
 ## Try it locally
 
 Requires **Node 24**, **pnpm 11.19.0**, and **uv**. uv installs the pinned Python 3.12 runtime. SQLite is the default; no database server or Docker is needed.

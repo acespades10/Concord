@@ -13,14 +13,15 @@
     "db:migrate": "uv run --directory apps/api alembic upgrade head",
     "db:seed": "uv run --directory apps/api python -m app.seed",
     "api:types": "uv run --directory apps/api python -m app.schema && pnpm --filter @concord/web api:types",
-    "lint": "pnpm --filter @concord/web lint && uv run --project apps/api ruff check apps/api",
-    "format": "prettier --write . && uv run --project apps/api ruff format apps/api",
-    "format:check": "prettier --check . && uv run --project apps/api ruff format --check apps/api",
+    "lint": "pnpm --filter @concord/web lint && uv run --project apps/api ruff check --config apps/api/pyproject.toml apps/api benchmarks",
+    "format": "prettier --write . && uv run --project apps/api ruff format --config apps/api/pyproject.toml apps/api benchmarks",
+    "format:check": "prettier --check . && uv run --project apps/api ruff format --config apps/api/pyproject.toml --check apps/api benchmarks",
     "typecheck": "pnpm --filter @concord/web typecheck",
     "test": "pnpm --filter @concord/web test && pnpm test:api",
     "test:api": "uv run --directory apps/api pytest",
     "test:e2e": "pnpm --filter @concord/web test:e2e",
-    "build": "pnpm --filter @concord/web build"
+    "build": "pnpm --filter @concord/web build",
+    "benchmark": "uv run --project apps/api --extra dev --frozen python benchmarks/run.py --output .local/benchmark"
   },
   "devDependencies": {
     "concurrently": "^9.2.1",

@@ -7,3 +7,7 @@ node_modules/
 artifacts/
 playwright-report/
 test-results/
+.local/
+benchmarks/data/
+site/assets/
+site/evidence/

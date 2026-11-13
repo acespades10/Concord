@@ -1,0 +1,244 @@
+{
+  "viewports": [
+    {
+      "width": 1440,
+      "scroll": 1440,
+      "hero": 900,
+      "sections": [
+        {
+          "id": "top",
+          "height": 900,
+          "overflow": false
+        },
+        {
+          "id": "workflow",
+          "height": 900,
+          "overflow": false
+        },
+        {
+          "id": "evidence",
+          "height": 900,
+          "overflow": false
+        },
+        {
+          "id": "workspace",
+          "height": 900,
+          "overflow": false
+        },
+        {
+          "id": "reproduce",
+          "height": 900,
+          "overflow": false
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/workspace.webp",
+          "loaded": true
+        }
+      ],
+      "controls": "tabs, arrow keys, copy, menu and Escape passed"
+    },
+    {
+      "width": 1024,
+      "scroll": 1024,
+      "hero": 768,
+      "sections": [
+        {
+          "id": "top",
+          "height": 768,
+          "overflow": false
+        },
+        {
+          "id": "workflow",
+          "height": 779.703125,
+          "overflow": false
+        },
+        {
+          "id": "evidence",
+          "height": 784.234375,
+          "overflow": false
+        },
+        {
+          "id": "workspace",
+          "height": 785.84375,
+          "overflow": false
+        },
+        {
+          "id": "reproduce",
+          "height": 815.15625,
+          "overflow": false
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/workspace.webp",
+          "loaded": true
+        }
+      ],
+      "controls": "tabs, arrow keys, copy, menu and Escape passed"
+    },
+    {
+      "width": 820,
+      "scroll": 820,
+      "hero": 1180,
+      "sections": [
+        {
+          "id": "top",
+          "height": 1180,
+          "overflow": false
+        },
+        {
+          "id": "workflow",
+          "height": 1180,
+          "overflow": false
+        },
+        {
+          "id": "evidence",
+          "height": 1180,
+          "overflow": false
+        },
+        {
+          "id": "workspace",
+          "height": 1180,
+          "overflow": false
+        },
+        {
+          "id": "reproduce",
+          "height": 1180,
+          "overflow": false
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/workspace.webp",
+          "loaded": true
+        }
+      ],
+      "controls": "tabs, arrow keys, copy, menu and Escape passed"
+    },
+    {
+      "width": 768,
+      "scroll": 768,
+      "hero": 1024,
+      "sections": [
+        {
+          "id": "top",
+          "height": 1024,
+          "overflow": false
+        },
+        {
+          "id": "workflow",
+          "height": 1024,
+          "overflow": false
+        },
+        {
+          "id": "evidence",
+          "height": 1024,
+          "overflow": false
+        },
+        {
+          "id": "workspace",
+          "height": 1024,
+          "overflow": false
+        },
+        {
+          "id": "reproduce",
+          "height": 1024,
+          "overflow": false
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/workspace.webp",
+          "loaded": true
+        }
+      ],
+      "controls": "tabs, arrow keys, copy, menu and Escape passed"
+    },
+    {
+      "width": 390,
+      "scroll": 390,
+      "hero": 827.609375,
+      "sections": [
+        {
+          "id": "top",
+          "height": 827.609375,
+          "overflow": false
+        },
+        {
+          "id": "workflow",
+          "height": 844,
+          "overflow": false
+        },
+        {
+          "id": "evidence",
+          "height": 844,
+          "overflow": false
+        },
+        {
+          "id": "workspace",
+          "height": 844,
+          "overflow": false
+        },
+        {
+          "id": "reproduce",
+          "height": 844,
+          "overflow": false
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/workspace.webp",
+          "loaded": true
+        }
+      ],
+      "controls": "tabs, arrow keys, copy, menu and Escape passed"
+    },
+    {
+      "width": 320,
+      "scroll": 320,
+      "hero": 979.78125,
+      "sections": [
+        {
+          "id": "top",
+          "height": 979.78125,
+          "overflow": false
+        },
+        {
+          "id": "workflow",
+          "height": 901.6875,
+          "overflow": false
+        },
+        {
+          "id": "evidence",
+          "height": 957.921875,
+          "overflow": false
+        },
+        {
+          "id": "workspace",
+          "height": 800,
+          "overflow": false
+        },
+        {
+          "id": "reproduce",
+          "height": 1007.171875,
+          "overflow": false
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/workspace.webp",
+          "loaded": true
+        }
+      ],
+      "controls": "tabs, arrow keys, copy, menu and Escape passed"
+    }
+  ],
+  "errors": [],
+  "accessibility": {
+    "passes": 26,
+    "violations": []
+  },
+  "passed": true
+}
