@@ -39,6 +39,7 @@ jobs:
       - run: uv run --directory apps/api alembic check
       - run: pnpm build
       - run: pnpm --filter @concord/web exec playwright install --with-deps chromium
+      - run: node site/scripts/check-browser.cjs
       - run: pnpm test:e2e
       - uses: actions/upload-artifact@v4
         if: always()
@@ -48,6 +49,8 @@ jobs:
             artifacts/
             apps/web/playwright-report/
             apps/web/test-results/
+            .local/site-qa/
+          include-hidden-files: true
   postgres:
     runs-on: ubuntu-latest
     services:

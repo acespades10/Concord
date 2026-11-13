@@ -94,7 +94,21 @@ const server = http.createServer((req, res) => {
       await page.locator("#tab-review").click();
       await page.waitForTimeout(50);
       assert(await page.locator("#panel-review").isVisible());
+      const reviewHeight = await page
+        .locator(".record-stage")
+        .evaluate((el) => el.getBoundingClientRect().height);
       await page.locator("#tab-review").press("ArrowRight");
+      assert(await page.locator("#panel-export").isVisible());
+      const exportHeight = await page
+        .locator(".record-stage")
+        .evaluate((el) => el.getBoundingClientRect().height);
+      assert(
+        Math.abs(reviewHeight - exportHeight) < 1,
+        `Panel shifts at ${width}`,
+      );
+      await page.locator("#tab-export").press("Home");
+      assert(await page.locator("#panel-votes").isVisible());
+      await page.locator("#tab-votes").press("End");
       assert(await page.locator("#panel-export").isVisible());
       await page.locator("#tab-votes").click();
       assert(await page.locator("#panel-votes").isVisible());
@@ -105,6 +119,19 @@ const server = http.createServer((req, res) => {
           "true",
         );
         assert(await page.locator("main").evaluate((e) => e.inert));
+        await page.locator(".nav__toggle").focus();
+        await page.keyboard.press("Tab");
+        assert(
+          await page
+            .locator("header.nav")
+            .evaluate((el) => el.contains(document.activeElement)),
+        );
+        await page.keyboard.press("Shift+Tab");
+        assert(
+          await page
+            .locator("header.nav")
+            .evaluate((el) => el.contains(document.activeElement)),
+        );
         await page.keyboard.press("Escape");
         assert.equal(
           await page.locator(".nav__toggle").getAttribute("aria-expanded"),
@@ -125,6 +152,10 @@ const server = http.createServer((req, res) => {
         document.querySelector(".copy-status").textContent.includes("copied"),
       );
       assert.match(await page.locator(".copy-status").innerText(), /copied/);
+      assert.equal(
+        await page.locator("[data-copy-label]").innerText(),
+        "Copied",
+      );
       const copied = await page.evaluate(() => navigator.clipboard.readText());
       assert(copied.includes("benchmarks/run.py"));
       await page.locator(".product-screen").scrollIntoViewIfNeeded();
@@ -140,7 +171,8 @@ const server = http.createServer((req, res) => {
       });
       report.viewports.push({
         ...initial,
-        controls: "tabs, arrow keys, copy, menu and Escape passed",
+        controls:
+          "stable tabs, arrow keys, Home/End, copy feedback, menu focus containment and Escape passed",
       });
       await page.close();
     }
@@ -149,6 +181,37 @@ const server = http.createServer((req, res) => {
     });
     const page = await auditContext.newPage();
     await page.goto(url);
+    await page.locator("#tab-review").click();
+    await page.locator("#tab-export").click();
+    await page.locator("#tab-votes").click();
+    assert(await page.locator("#panel-votes").isVisible());
+    await page.locator("#tab-votes").press("ArrowRight");
+    assert.equal(
+      await page
+        .locator(".stage-panels")
+        .evaluate((el) => el.getAnimations({ subtree: true }).length),
+      0,
+      "Keyboard navigation should be instant",
+    );
+    await page.evaluate(() =>
+      Object.defineProperty(navigator.clipboard, "writeText", {
+        configurable: true,
+        value: () => Promise.reject(new Error("Clipboard denied for test")),
+      }),
+    );
+    await page.locator("[data-copy]").click();
+    await page.waitForFunction(() =>
+      document
+        .querySelector(".copy-status")
+        .textContent.includes("unavailable"),
+    );
+    assert(
+      (await page.evaluate(() => window.getSelection().toString())).includes(
+        "benchmarks/run.py",
+      ),
+    );
+    report.interactionEdges =
+      "Rapid pointer tab changes, instant keyboard selection and clipboard failure fallback passed";
     const AxeBuilder =
       require("../../apps/web/node_modules/@axe-core/playwright").default;
     const axeResult = await new AxeBuilder({ page })
@@ -170,6 +233,19 @@ const server = http.createServer((req, res) => {
       report.accessibility.violations.length,
       0,
       JSON.stringify(report.accessibility.violations),
+    );
+    await page.setViewportSize({ width: 390, height: 844 });
+    const mobileAxe = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+      .analyze();
+    report.accessibility.mobileViolations = mobileAxe.violations.map((v) => ({
+      id: v.id,
+      nodes: v.nodes.map((n) => n.failureSummary),
+    }));
+    assert.equal(
+      mobileAxe.violations.length,
+      0,
+      JSON.stringify(report.accessibility.mobileViolations),
     );
     report.passed = true;
   } catch (e) {

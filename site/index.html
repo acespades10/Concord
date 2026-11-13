@@ -88,10 +88,13 @@
         <div class="wrap">
           <div class="hero-text">
             <div class="hero__c">
-              <h1 id="hero-title">Data annotation<br />for careful teams.</h1>
+              <h1 id="hero-title">
+                Data annotation.<br /><span>Every decision visible.</span>
+              </h1>
               <p class="hero__lead">
-                Assign records, compare independent labels and export reviewed
-                data. Concord keeps the decisions behind your dataset visible.
+                A workspace for small teams to assign records, compare labels
+                and export reviewed data. Follow every decision from first vote
+                to final dataset.
               </p>
               <div class="btn-row">
                 <a class="btn btn--primary" href="#evidence"
@@ -231,72 +234,74 @@
                 <p class="source-message">
                   “I HAVE A DATE ON SUNDAY WITH WILL!!”
                 </p>
-                <div
-                  id="panel-votes"
-                  role="tabpanel"
-                  aria-labelledby="tab-votes"
-                  tabindex="0"
-                >
-                  <div class="record-list">
-                    <div>
-                      <span>Simulated annotator 1</span><strong>spam</strong>
+                <div class="stage-panels">
+                  <div
+                    id="panel-votes"
+                    role="tabpanel"
+                    aria-labelledby="tab-votes"
+                    tabindex="0"
+                  >
+                    <div class="record-list">
+                      <div>
+                        <span>Simulated annotator 1</span><strong>spam</strong>
+                      </div>
+                      <div>
+                        <span>Simulated annotator 2</span><strong>spam</strong>
+                      </div>
+                      <div>
+                        <span>Simulated annotator 3</span><strong>spam</strong>
+                      </div>
                     </div>
-                    <div>
-                      <span>Simulated annotator 2</span><strong>spam</strong>
-                    </div>
-                    <div>
-                      <span>Simulated annotator 3</span><strong>spam</strong>
-                    </div>
+                    <p class="stage-note">
+                      3 of 3 agree. Automatic consensus resolves this item, even
+                      though the source label is <strong>ham</strong>.
+                    </p>
                   </div>
-                  <p class="stage-note">
-                    3 of 3 agree. Automatic consensus resolves this item, even
-                    though the source label is <strong>ham</strong>.
-                  </p>
-                </div>
-                <div
-                  id="panel-review"
-                  role="tabpanel"
-                  aria-labelledby="tab-review"
-                  tabindex="0"
-                  hidden
-                >
-                  <div class="decision-pair">
-                    <div>
-                      <span>Original consensus</span><strong>spam</strong>
+                  <div
+                    id="panel-review"
+                    role="tabpanel"
+                    aria-labelledby="tab-review"
+                    tabindex="0"
+                    hidden
+                  >
+                    <div class="decision-pair">
+                      <div>
+                        <span>Original consensus</span><strong>spam</strong>
+                      </div>
+                      <div><span>Reviewed label</span><strong>ham</strong></div>
                     </div>
-                    <div><span>Reviewed label</span><strong>ham</strong></div>
+                    <p class="stage-note">
+                      The scripted reviewer checks the established source label
+                      and records a final decision. All three original
+                      submissions remain unchanged.
+                    </p>
+                    <p class="t-small muted">
+                      Automatic source-reference adjudication. No human judgment
+                      was performed.
+                    </p>
                   </div>
-                  <p class="stage-note">
-                    The scripted reviewer checks the established source label
-                    and records a final decision. All three original submissions
-                    remain unchanged.
-                  </p>
-                  <p class="t-small muted">
-                    Automatic source-reference adjudication. No human judgment
-                    was performed.
-                  </p>
-                </div>
-                <div
-                  id="panel-export"
-                  role="tabpanel"
-                  aria-labelledby="tab-export"
-                  tabindex="0"
-                  hidden
-                >
-                  <pre
-                    class="export-fragment"
-                    aria-label="Selected fields from the approved record"
-                  ><code>{
+                  <div
+                    id="panel-export"
+                    role="tabpanel"
+                    aria-labelledby="tab-export"
+                    tabindex="0"
+                    hidden
+                  >
+                    <pre
+                      class="export-fragment"
+                      aria-label="Selected fields from the approved record"
+                    ><code>{
   "external_id": "sms-00015",
   "payload": { "label": "ham", "note": "" },
   "resolved": true,
   "resolution": "adjudicated"
 }</code></pre>
-                  <p class="stage-note">
-                    Selected fields from the real export. A separate Python
-                    validator checked the full record, including original text,
-                    IDs and metadata.
-                  </p>
+                    <p class="stage-note">
+                      Selected fields from the real export. A separate Python
+                      validator checked the full record, including original
+                      text, IDs and metadata.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -381,7 +386,7 @@
       <section class="section" id="workspace" aria-labelledby="workspace-title">
         <div class="wrap">
           <h2 id="workspace-title">One workspace. Three annotation modes.</h2>
-          <div class="workspace-lead">
+          <div class="workspace-lead grid">
             <p>
               Rate responses, mark named entities or compare blinded A/B
               outputs.
@@ -391,9 +396,20 @@
               exercises categorical labels.
             </p>
           </div>
-          <div class="product-screen">
+          <a
+            class="product-screen m-zoom"
+            href="assets/workspace.webp"
+            target="_blank"
+            rel="noopener"
+            aria-label="Open the full Concord workspace screenshot"
+          >
             <img
-              src="assets/workspace.webp"
+              src="assets/workspace-1280.webp"
+              srcset="
+                assets/workspace-720.webp   720w,
+                assets/workspace-1280.webp 1280w
+              "
+              sizes="(max-width: 639px) calc(100vw - 48px), (max-width: 1023px) calc(100vw - 96px), 640px"
               alt="Concord workspace with rating, entity annotation and blinded comparison projects, team roles and project queues"
               width="1440"
               height="1307"
@@ -402,7 +418,7 @@
               data-source="client"
               data-subject="Concord application workspace"
             />
-          </div>
+          </a>
         </div>
       </section>
     </main>
@@ -441,7 +457,7 @@
                   type="button"
                   data-copy="run-command"
                 >
-                  Copy commands
+                  <span data-copy-label>Copy commands</span>
                 </button>
               </div>
               <pre

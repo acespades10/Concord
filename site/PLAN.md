@@ -25,3 +25,19 @@ The site is static HTML/CSS/JavaScript. Tabs inspect a saved run and do not writ
 annotations. Public evidence contains exports, aggregate validation and provenance,
 never the benchmark database, login sessions or machine-specific filesystem paths.
 GitHub repository visibility remains unchanged; the owner will make it public.
+
+## Interaction polish
+
+Keep the existing composition and assets. Sharpen the typographic hierarchy,
+give the recorded decisions a distinct surface, and use equal-width review tabs
+over a panel whose height is stable across stages. Tablet sections stack the
+explanation above the record so both remain comfortably readable. Keep the
+full product capture available at its original size through a real image link.
+
+Motion gate: pointer presses are frequent, so feedback is subtle; choosing a
+record stage is occasional, so a short fade explains the state change. Reuse
+the existing 140ms feedback and 240ms indicator tokens and their curves. Keyboard
+changes are instant. Reduced motion removes indicator travel; reduced transparency
+and increased contrast retain opaque, legible surfaces. No entrance sequence,
+scroll reveal, numerical counter or decorative loop is added. Vendor files remain
+unchanged; page integration supplies the accessibility adaptations.

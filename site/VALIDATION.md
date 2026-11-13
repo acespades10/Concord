@@ -19,24 +19,45 @@ Chromium 1248. No application API or annotation account is needed by the site.
 
 ## Observed results
 
-| Check                          | Result                                                                                 |
-| ------------------------------ | -------------------------------------------------------------------------------------- |
-| Static references and evidence | PASS: local links, anchors, ARIA references, export hashes and recorded counts         |
-| Browser widths                 | PASS: 1440, 1024, 820, 768, 390 and 320 pixels                                         |
-| Overflow                       | PASS: no horizontal overflow or section content overflow at those widths               |
-| Submissions, Review and Export | PASS: clicks and arrow-key selection display the corresponding saved record panel      |
-| Mobile menu                    | PASS: opens, makes page content inert, closes with Escape and section selection        |
-| Copy commands                  | PASS: status confirms copying; clipboard contains the benchmark command                |
-| Images                         | PASS: original product screenshot loads and decodes                                    |
-| Browser errors                 | PASS: no JavaScript exceptions or failed local requests                                |
-| Automated accessibility        | PASS: zero axe WCAG 2 A/AA and 2.1 AA violations on the desktop page, 26 passing rules |
-| Visual review                  | PASS: desktop, tablet and phone screenshots inspected; narrow-phone overlap corrected  |
-| Formatting                     | PASS: repository Prettier and Python formatter checks                                  |
+| Check                          | Result                                                                                                    |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| Static references and evidence | PASS: local links, anchors, ARIA references, export hashes and recorded counts                            |
+| Browser widths                 | PASS: 1440, 1024, 820, 768, 390 and 320 pixels                                                            |
+| Overflow                       | PASS: no horizontal overflow or section content overflow at those widths                                  |
+| Submissions, Review and Export | PASS: stable panel height, clicks, arrow keys, Home/End and rapid pointer changes                         |
+| Mobile menu                    | PASS: focus stays in the open menu, page content becomes inert, Escape and section selection close it     |
+| Copy commands                  | PASS: button and live status confirm success; denied clipboard access selects commands for manual copying |
+| Images                         | PASS: original product screenshot loads and decodes                                                       |
+| Browser errors                 | PASS: no JavaScript exceptions or failed local requests                                                   |
+| Automated accessibility        | PASS: zero axe WCAG 2 A/AA and 2.1 AA violations on desktop and phone; 26 passing desktop rules           |
+| Visual review                  | PASS: desktop, tablet and phone screenshots inspected; narrow-phone overlap corrected                     |
+| Formatting                     | PASS: repository Prettier and Python formatter checks                                                     |
 
 These are bounded checks, not a claim of complete accessibility or support for
 every browser. Download and documentation targets are real files. GitHub source
 links require repository access until the owner makes it public. Dataset DOI and
 license links identify their original publishers.
+
+## Design engineering polish
+
+Applied Emil Design Engineering, Design Taste, Animate and Apple Design to the
+existing site. No animation library or new artwork was added.
+
+| Before                                     | After                                                            | Why                                                |
+| ------------------------------------------ | ---------------------------------------------------------------- | -------------------------------------------------- |
+| Uniform hero title and fading preview      | Two-level type hierarchy and a complete, centered record preview | Show the source and reviewed decision clearly      |
+| Separate tabs with changing content height | Equal-width segmented control and stable panel height            | Keep the record in place when comparing stages     |
+| 280ms tab fade on keyboard input           | Instant keyboard changes; 140ms pointer fade                     | Respond directly to keyboard navigation            |
+| Narrow tablet text columns                 | Explanation above the record, aligned to the page grid           | Give the source text enough room                   |
+| Copy confirmation only below the button    | In-place Copied state plus live status and failure fallback      | Confirm the action where it happened               |
+| Small static workspace capture             | Responsive preview with a link to the full-size original         | Keep the page light and the screenshot inspectable |
+
+Motion serves feedback and state indication. Pointer presses use the existing
+140ms token and curve; the tab indicator travels in 240ms. All motion remains
+interruptible, keyboard state changes are instant, and reduced motion disables
+travel. Data, statistics and sections do not animate on scroll. Hover movement
+is restricted to fine pointers. Phone checks use browser emulation; physical
+device feel and Safari rendering were not tested.
 
 ## Design and performance checks
 
@@ -44,21 +65,35 @@ Antislop was applied during the build. The direction, typography, palette and
 interaction rationale are recorded in [PLAN.md](PLAN.md). Screens use real source
 records and the original application capture. No generated artwork was needed.
 
-The design-taste performance script measured approximately 181 KiB total transfer,
-12 requests, one 75 KiB image, one 30 KiB font and no WebGL contexts. It reported
-zero failures at 1440 and 390 pixels. Warnings covered an image larger than its
-display size and high background CPU use. Its local timing figures are not field
-performance or a product capacity claim. The final phone layout allows content
-to grow rather than overlap adjacent sections.
+The design-taste performance script measured approximately 132 KiB total transfer,
+12 requests, one 24 KiB image, one 30 KiB font and no WebGL contexts at device-pixel
+ratio 1. It reported zero failures at 1440 and 390 pixels. Responsive images
+removed the previous sizing warnings; the two remaining warnings concern high
+background CPU use. Higher-density screens can select the 1280px image. Local
+timing figures are not field performance or a product capacity claim.
 
-The full consistency checker did not finish; it is not reported as passing.
-The layout checker flags its rigid column and single-screen heuristics for the
-custom evidence columns, right-aligned screenshot description and natural mobile
-section heights. These are deliberate composition choices: text remains readable,
-section content does not overlap, and the actual record is kept visible. Tablet
-whitespace preserves the screen-based composition. No kit asset or checker was
-modified to suppress findings. Functional and visual verification above are
-reported separately from these design heuristics.
+The layout checker, including headline stress checks, reports zero findings at
+1440x900, 1024x768, 820x1180, 768x1024 and 390x844. The additional 320px browser
+check permits natural section height so content stays readable.
+
+The quick consistency scan completed at 1440 and 390 pixels; it is not a clean
+pass. Its findings were reviewed separately from the layout and accessibility
+checks. The following dispositions explain the remaining differences:
+
+| Finding                                        | Disposition                                                                                                                                                                                                                        |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| No visual / text-only band                     | The hero and workflow are live HTML representations of an actual record. The evidence section is a linked test-results list. Decorative imagery would not explain these better.                                                    |
+| Center axis / inset labels / split pairs       | The centered hero and date form one group. Record text uses internal padding, and the 4/8-column workflow intentionally gives more room to the data than the 5/7-column reproduction section. Outer edges pass the layout checker. |
+| Multiple headings                              | The scan treats the numeric statistic `53` as a section heading. The actual section headings remain one screen apart.                                                                                                              |
+| Contrast / font loading / utility button style | Strengthened explanatory text contrast, removed an unloaded font name and aligned the copy control with the secondary surface after the scan. Both accessibility scans pass.                                                       |
+| Section gaps                                   | Screen-sized sections retain some extra space after the mobile workspace image. The full-size capture remains accessible by link; content is neither cropped nor stretched to fill the space.                                      |
+| Small copy / status chips / selected tab       | Compact supporting metadata and source labels are distinct from primary copy and actions. The selected tab uses a light surface to maintain contrast throughout movement.                                                          |
+| Navigation and footer destination              | Skip to content and Reproduce have real, checked anchors; the footer contains the reproduction commands. Section labels describe destinations without duplicating whole headings.                                                  |
+| Ground colors / copy length                    | Sage variations distinguish source and reviewed decisions. Extra evidence text explicitly identifies simulation and its limits.                                                                                                    |
+
+Quick mode omits the full motion, form and section-tile sweeps. The functional
+script separately checks keyboard behavior, reduced motion, focus containment
+and rapid selection. No kit asset or checker was modified to suppress findings.
 
 ## Antislop delivery gate
 
@@ -73,11 +108,11 @@ identified explicitly rather than implying they were tested.
 - R-18 PASS: no testimonials or fictional customers.
 - R-23 PASS: existing product identity and screenshot; navigation implements the requested project and validation site.
 - R-24 PASS: every navigation anchor resolves in the static check.
-- R-25 PASS: axe found no contrast violations on the desktop page; phone uses the same colors.
+- R-25 PASS: axe found no contrast violations on desktop and phone after the selected-tab surface was corrected.
 - R-26 PASS: three tabs, menu, links and copy control have working targets or handlers.
 - R-27 PASS: content is local and immediately available; clipboard failure selects commands and reports a manual-copy instruction.
 - R-28 PASS: no FAQ.
-- R-32 PASS: native links and buttons, visible focus, arrow-key tabs and Escape menu dismissal.
+- R-32 PASS: native controls, visible instant keyboard focus, arrow-key/Home/End tabs and contained menu focus with Escape dismissal.
 - R-33 PASS: behavior is implemented in checked-in HTML, CSS and JavaScript.
 - R-34 PASS: no theme toggle; one intentional theme with an inverse evidence section.
 - R-35 PASS: site served over HTTP and browser click-through recorded above.
@@ -89,7 +124,7 @@ identified explicitly rather than implying they were tested.
 
 ### Purpose gate
 
-- R-01 PASS: desktop preview fade signals a product window; no decorative glow.
+- R-01 PASS: no decorative gradients or glow; the complete recorded preview remains visible on a sage ground.
 - R-04 PASS: no generic decorative icon set.
 - R-06 PASS: Instrument Sans serves readable labels; monospace is limited to IDs and commands.
 - R-07 PASS: no background grid or pattern.
@@ -140,3 +175,7 @@ The repository remains private. The Pages workflow validates the static files an
 skips deployment while private. The owner controls visibility and can follow
 [the Pages instructions](README.md#github-pages) when ready. No live public site
 is claimed by this report.
+
+The application CI job now also runs `site/scripts/check-browser.cjs` after
+installing Chromium and uploads its report and viewport captures with the browser
+evidence artifact.

@@ -1,0 +1,427 @@
+[
+ {
+  "vw": 1440,
+  "vh": 900,
+  "L": 80,
+  "R": 1360,
+  "nav": 72,
+  "screen": 900,
+  "hero": {
+   "height": 900,
+   "h1": {
+    "size": 74.88,
+    "leading": 1.02,
+    "lines": 2,
+    "x": 375,
+    "y": 120,
+    "w": 691,
+    "h": 153
+   },
+   "lead": {
+    "size": 20,
+    "lineHeight": 30,
+    "lines": 2,
+    "x": 360,
+    "y": 289,
+    "w": 719,
+    "h": 60
+   },
+   "buttons": {
+    "n": 2,
+    "h": 44,
+    "first": {
+     "x": 537,
+     "y": 377,
+     "w": 177,
+     "h": 44
+    }
+   },
+   "visual": {
+    "x": 80,
+    "y": 490,
+    "w": 1280,
+    "h": 346
+   }
+  },
+  "sections": [
+   {
+    "where": "#top section.hero.hero--centred \"Data annotation.Every decision v\"",
+    "top": 0,
+    "height": 900,
+    "content": 716,
+    "frame": 0
+   },
+   {
+    "where": "#workflow section.section \"Every label has a history. Agree\"",
+    "top": 900,
+    "height": 900,
+    "content": 558,
+    "frame": 900
+   },
+   {
+    "where": "#evidence section.section.evidence-section \"Claims you can check. A small be\"",
+    "top": 1800,
+    "height": 900,
+    "content": 699,
+    "frame": 1800
+   },
+   {
+    "where": "#workspace section.section \"One workspace. Three annotation \"",
+    "top": 2700,
+    "height": 900,
+    "content": 708,
+    "frame": 2700
+   }
+  ],
+  "findings": [],
+  "size": "1440x900",
+  "overflowX": false,
+  "stress": {
+   "hero": "centred",
+   "maxChars": 36,
+   "chars": 39,
+   "lines": 2,
+   "height": 900
+  }
+ },
+ {
+  "vw": 1024,
+  "vh": 768,
+  "L": 80,
+  "R": 944,
+  "nav": 72,
+  "screen": 768,
+  "hero": {
+   "height": 768,
+   "h1": {
+    "size": 61.6944,
+    "leading": 1.02,
+    "lines": 2,
+    "x": 227,
+    "y": 120,
+    "w": 569,
+    "h": 126
+   },
+   "lead": {
+    "size": 18.8186,
+    "lineHeight": 28.228,
+    "lines": 2,
+    "x": 174,
+    "y": 262,
+    "w": 676,
+    "h": 56
+   },
+   "buttons": {
+    "n": 2,
+    "h": 44,
+    "first": {
+     "x": 329,
+     "y": 346,
+     "w": 177,
+     "h": 44
+    }
+   },
+   "visual": {
+    "x": 80,
+    "y": 460,
+    "w": 864,
+    "h": 246
+   }
+  },
+  "sections": [
+   {
+    "where": "#top section.hero.hero--centred \"Data annotation.Every decision v\"",
+    "top": 0,
+    "height": 768,
+    "content": 586,
+    "frame": 0
+   },
+   {
+    "where": "#workflow section.section \"Every label has a history. Agree\"",
+    "top": 768,
+    "height": 852,
+    "content": 575,
+    "frame": 768
+   },
+   {
+    "where": "#evidence section.section.evidence-section \"Claims you can check. A small be\"",
+    "top": 1620,
+    "height": 804,
+    "content": 612,
+    "frame": 1620
+   },
+   {
+    "where": "#workspace section.section \"One workspace. Three annotation \"",
+    "top": 2424,
+    "height": 786,
+    "content": 593,
+    "frame": 2424
+   }
+  ],
+  "findings": [],
+  "size": "1024x768",
+  "overflowX": false,
+  "stress": {
+   "hero": "centred",
+   "maxChars": 36,
+   "chars": 39,
+   "lines": 2,
+   "height": 768
+  }
+ },
+ {
+  "vw": 820,
+  "vh": 1180,
+  "L": 48,
+  "R": 772,
+  "nav": 72,
+  "screen": 1180,
+  "hero": {
+   "height": 1180,
+   "h1": {
+    "size": 55.2277,
+    "leading": 1.02,
+    "lines": 2,
+    "x": 155,
+    "y": 120,
+    "w": 509,
+    "h": 113
+   },
+   "lead": {
+    "size": 18.2352,
+    "lineHeight": 27.3528,
+    "lines": 2,
+    "x": 82,
+    "y": 249,
+    "w": 656,
+    "h": 55
+   },
+   "buttons": {
+    "n": 2,
+    "h": 44,
+    "first": {
+     "x": 227,
+     "y": 331,
+     "w": 177,
+     "h": 44
+    }
+   },
+   "visual": {
+    "x": 48,
+    "y": 445,
+    "w": 724,
+    "h": 671
+   }
+  },
+  "sections": [
+   {
+    "where": "#top section.hero.hero--centred \"Data annotation.Every decision v\"",
+    "top": 0,
+    "height": 1180,
+    "content": 996,
+    "frame": 0
+   },
+   {
+    "where": "#workflow section.section \"Every label has a history. Agree\"",
+    "top": 1180,
+    "height": 1180,
+    "content": 770,
+    "frame": 1180
+   },
+   {
+    "where": "#evidence section.section.evidence-section \"Claims you can check. A small be\"",
+    "top": 2360,
+    "height": 1180,
+    "content": 796,
+    "frame": 2360
+   },
+   {
+    "where": "#workspace section.section \"One workspace. Three annotation \"",
+    "top": 3540,
+    "height": 1180,
+    "content": 803,
+    "frame": 3540
+   }
+  ],
+  "findings": [],
+  "size": "820x1180",
+  "overflowX": false,
+  "stress": {
+   "hero": "centred",
+   "maxChars": 36,
+   "chars": 39,
+   "lines": 2,
+   "height": 1180
+  }
+ },
+ {
+  "vw": 768,
+  "vh": 1024,
+  "L": 48,
+  "R": 720,
+  "nav": 72,
+  "screen": 1024,
+  "hero": {
+   "height": 1024,
+   "h1": {
+    "size": 53.5794,
+    "leading": 1.02,
+    "lines": 2,
+    "x": 137,
+    "y": 120,
+    "w": 494,
+    "h": 109
+   },
+   "lead": {
+    "size": 18.0865,
+    "lineHeight": 27.1297,
+    "lines": 2,
+    "x": 59,
+    "y": 245,
+    "w": 650,
+    "h": 54
+   },
+   "buttons": {
+    "n": 2,
+    "h": 44,
+    "first": {
+     "x": 201,
+     "y": 328,
+     "w": 177,
+     "h": 44
+    }
+   },
+   "visual": {
+    "x": 48,
+    "y": 441,
+    "w": 672,
+    "h": 519
+   }
+  },
+  "sections": [
+   {
+    "where": "#top section.hero.hero--centred \"Data annotation.Every decision v\"",
+    "top": 0,
+    "height": 1024,
+    "content": 840,
+    "frame": 0
+   },
+   {
+    "where": "#workflow section.section \"Every label has a history. Agree\"",
+    "top": 1024,
+    "height": 1024,
+    "content": 794,
+    "frame": 1024
+   },
+   {
+    "where": "#evidence section.section.evidence-section \"Claims you can check. A small be\"",
+    "top": 2048,
+    "height": 1024,
+    "content": 795,
+    "frame": 2048
+   },
+   {
+    "where": "#workspace section.section \"One workspace. Three annotation \"",
+    "top": 3072,
+    "height": 1024,
+    "content": 769,
+    "frame": 3072
+   }
+  ],
+  "findings": [],
+  "size": "768x1024",
+  "overflowX": false,
+  "stress": {
+   "hero": "centred",
+   "maxChars": 36,
+   "chars": 39,
+   "lines": 2,
+   "height": 1024
+  }
+ },
+ {
+  "vw": 390,
+  "vh": 844,
+  "L": 24,
+  "R": 366,
+  "nav": 56,
+  "screen": 844,
+  "hero": {
+   "height": 844,
+   "h1": {
+    "size": 34.32,
+    "leading": 1.08,
+    "lines": 2,
+    "x": 37,
+    "y": 96,
+    "w": 317,
+    "h": 74
+   },
+   "lead": {
+    "size": 16,
+    "lineHeight": 24,
+    "lines": 4,
+    "x": 24,
+    "y": 186,
+    "w": 342,
+    "h": 96
+   },
+   "buttons": {
+    "n": 2,
+    "h": 44,
+    "first": {
+     "x": 24,
+     "y": 310,
+     "w": 342,
+     "h": 44
+    }
+   },
+   "visual": {
+    "x": 24,
+    "y": 480,
+    "w": 342,
+    "h": 333
+   }
+  },
+  "sections": [
+   {
+    "where": "#top section.hero.hero--centred \"Data annotation.Every decision v\"",
+    "top": 0,
+    "height": 844,
+    "content": 717,
+    "frame": 0
+   },
+   {
+    "where": "#workflow section.section \"Every label has a history. Agree\"",
+    "top": 844,
+    "height": 844,
+    "content": 608,
+    "frame": 844
+   },
+   {
+    "where": "#evidence section.section.evidence-section \"Claims you can check. A small be\"",
+    "top": 1688,
+    "height": 844,
+    "content": 692,
+    "frame": 1688
+   },
+   {
+    "where": "#workspace section.section \"One workspace. Three annotation \"",
+    "top": 2532,
+    "height": 844,
+    "content": 531,
+    "frame": 2532
+   }
+  ],
+  "findings": [],
+  "size": "390x844",
+  "overflowX": false,
+  "stress": {
+   "hero": "centred",
+   "maxChars": 36,
+   "chars": 39,
+   "lines": 2,
+   "height": 844
+  }
+ }
+]
