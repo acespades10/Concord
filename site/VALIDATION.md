@@ -131,6 +131,11 @@ identified explicitly rather than implying they were tested.
 
 ## Publication
 
+GitHub Actions verified implementation commit `23f91bc` on 14 November 2026:
+
+- [Verify Concord](https://github.com/acespades10/Concord/actions/runs/43512334863): application, PostgreSQL and container jobs all passed.
+- [Publish Concord website](https://github.com/acespades10/Concord/actions/runs/43512334790): static validation passed; deployment skipped because the repository was private.
+
 The repository remains private. The Pages workflow validates the static files and
 skips deployment while private. The owner controls visibility and can follow
 [the Pages instructions](README.md#github-pages) when ready. No live public site
