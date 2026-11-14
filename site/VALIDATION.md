@@ -171,11 +171,21 @@ GitHub Actions verified implementation commit `23f91bc` on 14 November 2026:
 - [Verify Concord](https://github.com/acespades10/Concord/actions/runs/43512334863): application, PostgreSQL and container jobs all passed.
 - [Publish Concord website](https://github.com/acespades10/Concord/actions/runs/43512334790): static validation passed; deployment skipped because the repository was private.
 
-The repository remains private. The Pages workflow validates the static files and
-skips deployment while private. The owner controls visibility and can follow
-[the Pages instructions](README.md#github-pages) when ready. No live public site
-is claimed by this report.
+Those runs preceded repository publication. The repository was made public on
+14 November 2026 after the release-hardening checks below. The Pages workflow
+deploys the static site when public; see [the Pages instructions](README.md#github-pages).
 
 The application CI job now also runs `site/scripts/check-browser.cjs` after
 installing Chromium and uploads its report and viewport captures with the browser
 evidence artifact.
+
+## Public release hardening
+
+The [release CI run](https://github.com/acespades10/Concord/actions/runs/43589834383)
+passed application, PostgreSQL, container and production-image jobs for commit
+`f64224d`. Next.js was updated to 16.4.6; the production JavaScript dependency
+audit reported zero advisories. The production-image smoke test verified a real
+admin login, secure cookies, blank login fields, and persisted login throttling.
+The repository now includes an MIT license, third-party notices, production
+configuration, account provisioning and a free-hosting guide. Managed-database
+TLS and provider deployment are verified separately from this historical run.

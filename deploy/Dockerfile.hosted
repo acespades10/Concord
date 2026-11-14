@@ -23,7 +23,7 @@ COPY --from=api-builder /app/api/.venv /app/api/.venv
 COPY --chown=concord:concord apps/api/ ./
 COPY --from=web-builder --chown=concord:concord /repo/apps/web/.next/standalone /app/web/
 COPY --from=web-builder --chown=concord:concord /repo/apps/web/.next/static /app/web/apps/web/.next/static
-ENV PATH="/app/api/.venv/bin:$PATH" PYTHONUNBUFFERED=1 APP_ENV=production COOKIE_SECURE=true NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 NODE_OPTIONS=--max-old-space-size=160 PORT=10000
+ENV PATH="/app/api/.venv/bin:$PATH" PYTHONUNBUFFERED=1 APP_ENV=production COOKIE_SECURE=true DATABASE_SSL=verify-full NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 NODE_OPTIONS=--max-old-space-size=160 PORT=10000
 USER concord
 EXPOSE 10000
 CMD ["python", "-m", "app.hosted"]

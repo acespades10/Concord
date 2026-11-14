@@ -1,3 +1,4 @@
+import ssl
 from typing import Literal
 from urllib.parse import urlsplit
 
@@ -9,11 +10,17 @@ from sqlalchemy.engine import make_url
 class Settings(BaseSettings):
     app_env: Literal["development", "production"] = "development"
     database_url: str = "sqlite+aiosqlite:///./concord.db"
+    database_ssl: Literal["disable", "verify-full"] = "disable"
     app_origin: str = "http://localhost:3000"
     cookie_secure: bool = False
     session_hours: int = 24
     demo_password: str = "concord-demo-2026"
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+
+    def database_connect_args(self):
+        if self.database_ssl == "verify-full":
+            return {"ssl": ssl.create_default_context()}
+        return {}
 
     @model_validator(mode="after")
     def production_settings(self):

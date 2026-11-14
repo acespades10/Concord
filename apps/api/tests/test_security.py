@@ -1,4 +1,5 @@
 import asyncio
+import ssl
 import time
 
 import pytest
@@ -41,6 +42,12 @@ def test_production_rejects_unsafe_configuration(overrides):
 
 def test_valid_production_configuration():
     assert production().cookie_secure
+
+
+def test_managed_database_tls_verifies_server_identity():
+    context = production(database_ssl="verify-full").database_connect_args()["ssl"]
+    assert context.verify_mode == ssl.CERT_REQUIRED
+    assert context.check_hostname
 
 
 async def test_first_owner_bootstrap_never_replaces_a_password_or_adds_another_admin(database):

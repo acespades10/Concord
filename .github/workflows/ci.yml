@@ -111,7 +111,7 @@ jobs:
             sleep 2
           done
           exit 1
-      - run: docker run -d --name hosted --network concord-hosted-test -p 127.0.0.1:10000:10000 -e APP_ORIGIN=https://localhost -e DATABASE_URL="postgresql+asyncpg://concord:$POSTGRES_PASSWORD@hosted-db/concord" concord-hosted
+      - run: docker run -d --name hosted --network concord-hosted-test -p 127.0.0.1:10000:10000 -e APP_ORIGIN=https://localhost -e DATABASE_SSL=disable -e DATABASE_URL="postgresql+asyncpg://concord:$POSTGRES_PASSWORD@hosted-db/concord" concord-hosted
       - run: |
           for attempt in $(seq 1 60); do
             if curl --fail --silent http://127.0.0.1:10000/api/v1/health; then exit 0; fi

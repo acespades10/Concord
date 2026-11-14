@@ -11,8 +11,8 @@ Concord turns independent human judgments into reviewable datasets. Teams can ra
 The [static website](site/README.md) presents the product, a recorded annotation
 workflow, downloadable validated exports and the evidence behind the benchmark.
 Preview it with `python -m http.server 8080 --directory site`. The GitHub Pages
-workflow validates the site while this repository is private and deploys after
-the owner makes it public. See the site guide for setup instructions.
+workflow validates and publishes the site from this public repository.
+See the site guide for deployment details.
 
 ## Reproduce the annotation benchmark
 

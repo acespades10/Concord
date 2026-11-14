@@ -26,6 +26,7 @@ Docker, the hosted Dockerfile, and the **Free** plan in its dashboard. Configure
 | Variable        | Value                                                                |
 | --------------- | -------------------------------------------------------------------- |
 | `APP_ENV`       | `production`                                                         |
+| `DATABASE_SSL`  | `verify-full` (also the hosted image default)                        |
 | `COOKIE_SECURE` | `true`                                                               |
 | `APP_ORIGIN`    | The exact `https://...onrender.com` origin, without a trailing slash |
 | `DATABASE_URL`  | Neon PostgreSQL URL, with `postgresql+asyncpg://` and `ssl=require`  |
@@ -36,6 +37,11 @@ SQLAlchemy's asyncpg driver. Keep the generated database password; do not use
 the local-demo password. Production rejects PostgreSQL passwords shorter than
 20 characters. Database URLs are secrets and belong only in the provider's
 secret environment settings or an ignored local file.
+
+`DATABASE_SSL=verify-full` uses the operating system's trusted certificate
+authorities and verifies the database hostname for both migrations and runtime
+connections. Self-hosted Compose uses a private internal database network and
+does not enable database TLS; do not expose that database port to the internet.
 
 Startup applies migrations, starts one loopback API process and the public web
 proxy, and stops both if either exits. It never seeds demo data. The provider

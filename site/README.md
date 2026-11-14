@@ -1,7 +1,7 @@
 # Concord static website
 
 Product and validation site, built with plain HTML, CSS and JavaScript. The
-application repository remains private until its owner changes the visibility.
+application source is public and MIT licensed, with separate dataset and font licenses.
 No live annotation server is required by this site.
 
 ## Preview
@@ -28,9 +28,9 @@ the workflow. The expected address is:
 
 `https://acespades10.github.io/Concord/`
 
-This is an expected deployment address, not a claim that the private repository's
-site is currently live. Repository links become accessible to visitors when the
-owner makes the source public.
+Repository links are publicly accessible. Deployment status is available in
+the repository's Actions tab; the portfolio site is separate from the live
+annotation application and does not require an annotation server.
 
 ## Evidence
 
