@@ -15,8 +15,8 @@ export default function LoginPage() {
     () => true,
     () => false,
   );
-  const [email, setEmail] = useState("admin@concord.demo"),
-    [password, setPassword] = useState("concord-demo-2026"),
+  const [email, setEmail] = useState(""),
+    [password, setPassword] = useState(""),
     [pending, setPending] = useState(false),
     [error, setError] = useState("");
   const router = useRouter(),
@@ -125,36 +125,6 @@ export default function LoginPage() {
               <ArrowRight size={17} />
             </Button>
           </form>
-          <div className="demo-accounts">
-            <div className="divider-label">EXPLORE THE DEMO</div>
-            <p>
-              Choose a perspective. The demo credentials are filled in for you.
-            </p>
-            <div className="demo-role-grid">
-              {[
-                ["admin", "Admin"],
-                ["reviewer", "Reviewer"],
-                ["annotator1", "Annotator 1"],
-                ["annotator2", "Annotator 2"],
-                ["annotator3", "Annotator 3"],
-              ].map(([id, label]) => (
-                <button
-                  key={id}
-                  disabled={!ready || pending}
-                  className={email === `${id}@concord.demo` ? "selected" : ""}
-                  onClick={() => {
-                    setEmail(`${id}@concord.demo`);
-                    setPassword("concord-demo-2026");
-                  }}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-            <small>
-              Demo password: <code>concord-demo-2026</code>
-            </small>
-          </div>
           <p className="login-footnote">
             <ShieldCheck size={15} /> Your role determines what you can see and
             do.

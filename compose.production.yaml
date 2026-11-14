@@ -1,0 +1,86 @@
+name: concord-production
+
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: concord
+      POSTGRES_USER: concord
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set a random URL-safe database password of at least 32 characters}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks: [private]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U concord -d concord"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  migrate:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    environment: &api-env
+      APP_ENV: production
+      DATABASE_URL: postgresql+asyncpg://concord:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}@db:5432/concord
+      APP_ORIGIN: https://${DOMAIN:?Set the public hostname without a scheme or path}
+      COOKIE_SECURE: "true"
+    command: ["alembic", "upgrade", "head"]
+    networks: [private]
+    depends_on:
+      db:
+        condition: service_healthy
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    restart: unless-stopped
+    environment: *api-env
+    networks: [private]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/health')",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    restart: unless-stopped
+    networks: [private]
+    depends_on:
+      api:
+        condition: service_healthy
+  edge:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    environment:
+      DOMAIN: ${DOMAIN:?Set DOMAIN}
+    ports:
+      - "${HTTP_PORT:-80}:80"
+      - "${HTTPS_PORT:-443}:443"
+    volumes:
+      - ${CADDY_CONFIG:-./deploy/Caddyfile}:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    networks: [private, edge]
+    depends_on: [web]
+
+networks:
+  private:
+    internal: true
+  edge:
+
+volumes:
+  postgres-data:
+  caddy-data:
+  caddy-config:

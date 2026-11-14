@@ -7,11 +7,12 @@ from argon2 import PasswordHasher
 from argon2.exceptions import InvalidHashError, VerificationError
 from fastapi import APIRouter, Depends, HTTPException, Request, Response
 from sqlalchemy import delete, select
-from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from starlette.concurrency import run_in_threadpool
 
 from app.config import settings
 from app.db import get_db
+from app.login_limits import consume_login_budget
 from app.models import Session, User
 from app.schemas import Login, Message, SessionOut
 
@@ -71,7 +72,10 @@ async def login(
     db: AsyncSession = Depends(get_db, scope="function"),
 ):
     check_origin(request)
+    await consume_login_budget(body.email, async_sessionmaker(db.bind, expire_on_commit=False))
     user = await db.scalar(select(User).where(User.email == body.email.strip().lower()))
+    if settings.app_env == "production" and body.email.strip().lower().endswith("@concord.demo"):
+        user = None
     try:
         await run_in_threadpool(
             hasher.verify, user.password_hash if user else DUMMY_HASH, body.password

@@ -47,6 +47,7 @@ async def database(tmp_path, monkeypatch):
 
     app.dependency_overrides[get_db] = dependency
     monkeypatch.setattr("app.routes.SessionLocal", factory)
+    monkeypatch.setattr("app.login_limits.SessionLocal", factory)
     async with factory() as session:
         for role, name in [
             ("admin", "admin"),

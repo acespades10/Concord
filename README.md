@@ -46,7 +46,7 @@ pnpm dev
 
 Open [localhost:3000](http://localhost:3000). Interactive API documentation is at [localhost:8000/api/v1/docs](http://localhost:8000/api/v1/docs).
 
-The login page includes account selectors. All demo accounts use `concord-demo-2026`:
+For local development, enter one of these seeded accounts manually. All demo accounts use `concord-demo-2026`:
 
 | Account                   | Role      | What to explore                                                        |
 | ------------------------- | --------- | ---------------------------------------------------------------------- |
@@ -209,12 +209,17 @@ docker compose up --build -d
 docker compose logs -f
 ```
 
-Open [localhost:3000](http://localhost:3000). Compose starts PostgreSQL, applies migrations, seeds demo data, then starts the API and web services. PostgreSQL data persists in a named volume. API/database ports stay internal; the web service proxies API requests. Both runtime containers run as non-root users.
+Open [localhost:3000](http://localhost:3000). Compose starts PostgreSQL, applies migrations, then starts the API and web services. Demo seeding is an explicit optional step: `docker compose run --rm migrate python -m app.seed`. PostgreSQL data persists in a named volume. API/database ports stay internal; the web service binds only to loopback and proxies API requests. Both runtime containers run as non-root users.
 
-This Compose configuration is a demo deployment. For an internet-facing deployment, choose a strong database password, use HTTPS with `COOKIE_SECURE=true`, set the exact `APP_ORIGIN`, remove automatic demo seeding, provision non-demo accounts, and apply an edge login rate limit. `API_URL` is a web image build argument because Next.js rewrites are evaluated during the build.
+This Compose configuration is for local development. Use the [production guide](docs/production.md) for free Render/Neon hosting or `compose.production.yaml` with automatic HTTPS. Production validates secure settings, refuses demo seeding and demo logins, and uses persistent login rate limits. The account CLI provisions real users and rotates passwords with session revocation. `API_URL` is a web image build argument because Next.js rewrites are evaluated during the build.
 
 ## Scope and tradeoffs
 
-This is a portfolio MVP for one workspace and small teams. Registration, invitations, password reset, billing, nested NER, annotation revision history, and Hugging Face Hub publishing are out of scope. Skips persist per annotator until explicitly revisited. Adjudication updates replace the prior decision; submitted annotations never change. Metrics and exports are computed in memory, so large corpora would need pagination, background export jobs, and incremental aggregation. Sessions have a fixed 24-hour lifetime. There is no distributed login throttling in the application; production deployments should enforce it at the edge.
+This is a portfolio MVP for one workspace and small teams. Registration, invitations, self-service password reset, billing, nested NER, annotation revision history, and Hugging Face Hub publishing are out of scope. Skips persist per annotator until explicitly revisited. Adjudication updates replace the prior decision; submitted annotations never change. Metrics and exports are computed in memory, so large corpora would need pagination, background export jobs, and incremental aggregation. Sessions have a fixed 24-hour lifetime. Database-backed login limits are shared across workers; larger deployments should supplement them with provider/WAF controls.
+
+## License
+
+Concord's original code and documentation are [MIT licensed](LICENSE). The SMS
+dataset and bundled font retain their own licenses; see [third-party notices](THIRD_PARTY_NOTICES.md).
 
 The visual system uses warm neutrals, restrained sage accents, and mode-specific colors, with reduced-motion support and responsive layouts. It uses system fonts and CSS artwork, so local development does not depend on a font or image CDN.

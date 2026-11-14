@@ -1,4 +1,7 @@
 .git
+.local
+**/.env.*
+.env.production
 **/node_modules
 **/.next
 **/.venv

@@ -42,6 +42,13 @@ class Session(Base):
     expires_at: Mapped[float] = mapped_column(Float, index=True)
 
 
+class LoginBudget(Base):
+    __tablename__ = "login_budgets"
+    key: Mapped[str] = mapped_column(String(64), primary_key=True)
+    started_at: Mapped[float] = mapped_column(Float, index=True)
+    attempts: Mapped[int] = mapped_column(Integer)
+
+
 class Project(Base):
     __tablename__ = "projects"
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uid)

@@ -26,6 +26,8 @@ def stable(value):
 
 
 async def seed(db):
+    if settings.app_env == "production":
+        raise RuntimeError("Demo seeding is disabled in production")
     people = []
     password = hasher.hash(settings.demo_password)
     for login, name, role in DEMO_NAMES:
