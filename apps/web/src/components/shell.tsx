@@ -69,13 +69,13 @@ export function Shell({ children }: { children: ReactNode }) {
         </Link>
         <button
           className="workspace-switch"
-          onClick={() => notice("You’re in the Concord demo workspace.")}
+          onClick={() => notice("You’re in the Concord workspace.")}
         >
           <span className="workspace-icon">
             <Command size={17} />
           </span>
           <span>
-            Demo workspace<small>TEAM WORKSPACE</small>
+            Concord workspace<small>TEAM WORKSPACE</small>
           </span>
           <ChevronDown size={15} />
         </button>
@@ -174,7 +174,7 @@ export function Shell({ children }: { children: ReactNode }) {
           <div className="topbar-right">
             <span className="demo-pill">
               <span />
-              Demo environment
+              Team workspace
             </span>
             <span className="avatar avatar-small">{user.name[0]}</span>
           </div>

@@ -8,6 +8,11 @@ Concord turns independent human judgments into reviewable datasets. Teams can ra
 
 ## Project website
 
+Visit the [portfolio website](https://acespades10.github.io/Concord/) or
+[live annotation app](https://concord-acespades10.onrender.com/). The app requires
+a provisioned account and may take a minute to wake on its free hosting plan.
+See the [public release verification](docs/public-release.md) for deployment checks.
+
 The [static website](site/README.md) presents the product, a recorded annotation
 workflow, downloadable validated exports and the evidence behind the benchmark.
 Preview it with `python -m http.server 8080 --directory site`. The GitHub Pages

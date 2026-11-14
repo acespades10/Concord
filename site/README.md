@@ -4,6 +4,11 @@ Product and validation site, built with plain HTML, CSS and JavaScript. The
 application source is public and MIT licensed, with separate dataset and font licenses.
 No live annotation server is required by this site.
 
+Published at [acespades10.github.io/Concord](https://acespades10.github.io/Concord/).
+The separate [live annotation app](https://concord-acespades10.onrender.com/)
+requires a provisioned account. Its free server sleeps when idle, so the first
+request can take a minute or more. See [release verification](../docs/public-release.md).
+
 ## Preview
 
 From the repository root:
