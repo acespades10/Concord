@@ -1,5 +1,10 @@
 packages:
   - apps/web
+overrides:
+  # ESLint's glob dependencies still select minimatch 10; 11.0.1 fixes GHSA-g3hv-75wg-m249.
+  "minimatch@>=7.0.0 <11.0.1": "^11.0.1"
+  "shell-quote@>=1.8.4 <1.11.0": "^1.11.0"
+  "vite@>=8.3.0 <=8.3.2": "^8.3.3"
 allowBuilds:
   unrs-resolver: true
   sharp: true

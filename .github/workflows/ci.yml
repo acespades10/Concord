@@ -19,8 +19,9 @@ jobs:
           version: "0.11.29"
           enable-cache: true
       - run: pnpm install --frozen-lockfile
-      - run: pnpm audit --prod --audit-level=high
+      - run: pnpm audit --audit-level=high
       - run: uv sync --project apps/api --extra dev --frozen
+      - run: uv tool run --from pip-audit==2.10.1 pip-audit --path apps/api/.venv/lib/python3.12/site-packages
       - run: pnpm lint
       - run: pnpm format:check
       - run: pnpm api:types && git diff --exit-code -- apps/api/openapi.json apps/web/src/lib/api-types.ts

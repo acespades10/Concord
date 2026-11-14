@@ -8,8 +8,18 @@ Verified on 14 November 2026:
 
 ## Dependencies and CI
 
-Next.js and eslint-config-next are 16.4.6 in the lockfile. The production pnpm
-audit reports zero advisories. All four jobs (application, PostgreSQL, containers,
+Next.js and eslint-config-next are 16.4.6 in the lockfile. The full pnpm audit
+(including development tools) and pip-audit of the installed Python environment
+both report zero advisories. GitHub scanning after publication exposed additional
+tooling and dataset dependencies, which were updated to patched versions:
+datasets 5.0.1, certifi 2026.10.23, filelock 4.2.10, fsspec 2026.6.0,
+opentelemetry-api 1.45.2, Vitest 4.1.12, and patched transitive JavaScript packages.
+Scoped pnpm overrides keep minimatch, shell-quote and Vite on fixed versions;
+CI audits JavaScript and Python dependencies, including development tooling.
+The refreshed environment passed 141 backend tests, 6 frontend tests, ESLint,
+and formatting checks locally.
+
+All four jobs (application, PostgreSQL, containers,
 and production image) passed for release implementation `99f6265` in
 [CI run 43590850118](https://github.com/acespades10/Concord/actions/runs/43590850118).
 The [Pages deployment](https://github.com/acespades10/Concord/actions/runs/43591074762)
